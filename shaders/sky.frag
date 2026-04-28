@@ -2,8 +2,16 @@
 //uniform sampler2D p3d_Texture0; // first texture unit
 in vec3 v_model_pos;
 uniform float u_time;
-uniform float sun_dec;
+uniform float u_diurnal_sign;
+uniform float u_horiz_yaw_rad;
+uniform vec3 u_sun_dir;
 out vec4 fragColor;
+
+vec3 horiz_rot_y(vec3 v, float a) {
+    float c = cos(a);
+    float s = sin(a);
+    return vec3(c * v.x + s * v.z, v.y, -s * v.x + c * v.z);
+}
 
 vec3 rotateAroundAxis(vec3 v, vec3 axis, float angle) {
     axis = normalize(axis);
@@ -60,15 +68,13 @@ void main() {
     const float PI = 3.14159265359;
     float lat = 52.; // in degrees
 
-    vec3 sun_pos = vec3(
-        cos(-2*PI * u_time) * cos(radians(sun_dec)),
-        sin(radians(sun_dec)),
-        sin(-2*PI * u_time) * cos(radians(sun_dec))
-    );
-    sun_pos = rotateAroundAxis(sun_pos, vec3(0.,0.,1.), radians(90-lat));
-    vec3 rot_sky = rotateAroundAxis(v_model_pos, vec3(-cos(radians(lat)), sin(radians(lat)), 0), -2*PI * u_time);
+    float di = u_diurnal_sign;
+    float hy = u_horiz_yaw_rad;
+    vec3 sun_pos = normalize(u_sun_dir);
+    vec3 vm = horiz_rot_y(normalize(v_model_pos), hy);
+    vec3 rot_sky = rotateAroundAxis(vm, vec3(-cos(radians(lat)), sin(radians(lat)), 0), -2*PI * u_time * di);
 
-    float atm_weight = pow(normalize(v_model_pos).y, 0.5);
+    float atm_weight = pow(vm.y, 0.5);
 
     // linear interpolation of the bottom/top colors of the sky gradient
     vec3 bottom_color = vec3(0,0,0);
@@ -119,7 +125,7 @@ void main() {
 
 
 
-    float sun_ang_dist = acos(dot(sun_pos, normalize(v_model_pos)));
+    float sun_ang_dist = acos(dot(sun_pos, vm));
     if (sun_ang_dist <= radians(0.5)) {
         sky_color += vec3(1., 1., 1.);
     }
@@ -134,7 +140,7 @@ void main() {
     // add the milky way
     sky_color += stellar_brightness * vec3(0.2*exp(-pow(dot(normalize(rot_sky), normalize(vec3(6, 67, 15))), 2)/0.05));
 
-    if (v_model_pos.y < 0) {
+    if (vm.y < 0) {
         sky_color = vec3(0.);
     }
 

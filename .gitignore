@@ -1,0 +1,33 @@
+# Bytecode / caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Packaging / build
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Local / editor
+.env
+.idea/
+.vscode/
+*.log
+.DS_Store
+
+# Blender backups (source assets live as .blend)
+*.blend1
+
+# Game runtime save (machine-local)
+user_saves.dat
