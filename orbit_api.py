@@ -1,7 +1,8 @@
 """
-Compute-only API for the B1 native host (no Ursina / Panda).
+Compute-only API for `asteroid_game_touch` (no Ursina / Panda).
 Callable from embedded Python via C API or JSON wrappers.
 """
+
 
 from __future__ import annotations
 
@@ -216,7 +217,7 @@ def compute_orbit_json(json_in: str) -> str:
 
 def frame_visual_for_c(t_day: float, latitude_deg: float = 52.0, sun_dec_deg: float = 15.0):
     """
-    Single Python call from b1_host: sun unit vector + RGB derived from it (GLES cube tint
+    Single Python call from asteroid_game_touch: sun unit vector + RGB derived from it (GLES cube tint
     and secondary object placement).
     Returns: (sx, sy, sz, r, g, b)
     """

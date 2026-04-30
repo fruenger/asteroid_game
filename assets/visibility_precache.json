@@ -1,19 +1,45 @@
 {
-  "version": 1,
+  "version": 2,
   "reference_date": "2026-01-20",
   "min_span_hours": 1.0,
   "entries": [
     {
-      "session_seed": 2,
-      "visibility_t_open_mjd": 61060.95486111111,
+      "session_seed": 0,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.166666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 1,
+      "visibility_t_open_mjd": 61061.194444444445,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 2,
+      "visibility_t_open_mjd": 61060.944444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 3,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
     },
     {
       "session_seed": 4,
       "visibility_t_open_mjd": 61060.708333333336,
       "visibility_t_close_mjd": 61060.805555555555,
       "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 5,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
     },
     {
       "session_seed": 6,
@@ -23,7 +49,7 @@
     },
     {
       "session_seed": 7,
-      "visibility_t_open_mjd": 61061.086805555555,
+      "visibility_t_open_mjd": 61061.07638888889,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
@@ -34,44 +60,64 @@
       "sun_cap_used": -12.0
     },
     {
+      "session_seed": 9,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
       "session_seed": 10,
-      "visibility_t_open_mjd": 61061.135416666664,
+      "visibility_t_open_mjd": 61061.125,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 11,
-      "visibility_t_open_mjd": 61061.14236111111,
+      "visibility_t_open_mjd": 61061.13888888889,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
+      "session_seed": 12,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
       "session_seed": 13,
-      "visibility_t_open_mjd": 61060.788194444445,
+      "visibility_t_open_mjd": 61060.770833333336,
       "visibility_t_close_mjd": 61060.98611111111,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 14,
-      "visibility_t_open_mjd": 61061.07986111111,
+      "visibility_t_open_mjd": 61061.069444444445,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
+      "session_seed": 15,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
       "session_seed": 16,
-      "visibility_t_open_mjd": 61061.09375,
+      "visibility_t_open_mjd": 61061.083333333336,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 17,
-      "visibility_t_open_mjd": 61060.73263888889,
+      "visibility_t_open_mjd": 61060.72222222222,
       "visibility_t_close_mjd": 61061.15277777778,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 18,
-      "visibility_t_open_mjd": 61060.833333333336,
+      "visibility_t_open_mjd": 61060.82638888889,
       "visibility_t_close_mjd": 61061.07638888889,
       "sun_cap_used": -12.0
     },
@@ -83,19 +129,3084 @@
     },
     {
       "session_seed": 20,
-      "visibility_t_open_mjd": 61061.038194444445,
+      "visibility_t_open_mjd": 61061.02777777778,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 21,
-      "visibility_t_open_mjd": 61061.0,
+      "visibility_t_open_mjd": 61060.993055555555,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     },
     {
       "session_seed": 22,
-      "visibility_t_open_mjd": 61060.927083333336,
+      "visibility_t_open_mjd": 61060.916666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 23,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 24,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 25,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 26,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.708333333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 27,
+      "visibility_t_open_mjd": 61060.86111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 28,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.708333333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 29,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.8125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 30,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 31,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.73611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 32,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 33,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 34,
+      "visibility_t_open_mjd": 61061.07638888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 35,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.96527777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 36,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 37,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.805555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 38,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.930555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 39,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 40,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 41,
+      "visibility_t_open_mjd": 61060.90277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 42,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.92361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 43,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 44,
+      "visibility_t_open_mjd": 61061.291666666664,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 45,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 46,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.020833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 47,
+      "visibility_t_open_mjd": 61061.15972222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 48,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 49,
+      "visibility_t_open_mjd": 61061.15277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 50,
+      "visibility_t_open_mjd": 61061.07638888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 51,
+      "visibility_t_open_mjd": 61061.145833333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 52,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 53,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 54,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 55,
+      "visibility_t_open_mjd": 61061.20138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 56,
+      "visibility_t_open_mjd": 61060.73611111111,
+      "visibility_t_close_mjd": 61060.97222222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 57,
+      "visibility_t_open_mjd": 61061.20138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 58,
+      "visibility_t_open_mjd": 61061.22222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 59,
+      "visibility_t_open_mjd": 61061.020833333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 60,
+      "visibility_t_open_mjd": 61060.73611111111,
+      "visibility_t_close_mjd": 61061.1875,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 61,
+      "visibility_t_open_mjd": 61060.729166666664,
+      "visibility_t_close_mjd": 61061.1875,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 62,
+      "visibility_t_open_mjd": 61060.90972222222,
+      "visibility_t_close_mjd": 61061.22222222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 63,
+      "visibility_t_open_mjd": 61061.131944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 64,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.79861111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 65,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 66,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.791666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 67,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.819444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 68,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 69,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.979166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 70,
+      "visibility_t_open_mjd": 61061.125,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 71,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.72222222222,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 72,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 73,
+      "visibility_t_open_mjd": 61060.875,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 74,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 75,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.083333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 76,
+      "visibility_t_open_mjd": 61061.291666666664,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 77,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.09027777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 78,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.88888888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 79,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.97222222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 80,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.73611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 81,
+      "visibility_t_open_mjd": 61061.22222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 82,
+      "visibility_t_open_mjd": 61060.868055555555,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 83,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 84,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 85,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 86,
+      "visibility_t_open_mjd": 61061.104166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 87,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 88,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 89,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.96527777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 90,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.82638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 91,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 92,
+      "visibility_t_open_mjd": 61060.944444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 93,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 94,
+      "visibility_t_open_mjd": 61061.256944444445,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 95,
+      "visibility_t_open_mjd": 61060.79861111111,
+      "visibility_t_close_mjd": 61061.118055555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 96,
+      "visibility_t_open_mjd": 61061.27777777778,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 97,
+      "visibility_t_open_mjd": 61060.97222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 98,
+      "visibility_t_open_mjd": 61061.28472222222,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 99,
+      "visibility_t_open_mjd": 61061.208333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 100,
+      "visibility_t_open_mjd": 61061.07638888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 101,
+      "visibility_t_open_mjd": 61060.854166666664,
+      "visibility_t_close_mjd": 61061.125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 102,
+      "visibility_t_open_mjd": 61061.17361111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 103,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.069444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 104,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 105,
+      "visibility_t_open_mjd": 61060.833333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 106,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 107,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 108,
+      "visibility_t_open_mjd": 61060.868055555555,
+      "visibility_t_close_mjd": 61061.041666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 109,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 110,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 111,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.819444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 112,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 113,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.895833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 114,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 115,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.82638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 116,
+      "visibility_t_open_mjd": 61061.0,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 117,
+      "visibility_t_open_mjd": 61061.17361111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 118,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 119,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.96527777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 120,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 121,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.82638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 122,
+      "visibility_t_open_mjd": 61060.86111111111,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 123,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 124,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 125,
+      "visibility_t_open_mjd": 61060.993055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 126,
+      "visibility_t_open_mjd": 61061.125,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 127,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 128,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 129,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 130,
+      "visibility_t_open_mjd": 61060.805555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 131,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 132,
+      "visibility_t_open_mjd": 61060.76388888889,
+      "visibility_t_close_mjd": 61060.92361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 133,
+      "visibility_t_open_mjd": 61060.881944444445,
+      "visibility_t_close_mjd": 61061.20138888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 134,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 135,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.70138888889,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 136,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.71527777778,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 137,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.03472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 138,
+      "visibility_t_open_mjd": 61061.270833333336,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 139,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 140,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84027777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 141,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 142,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.79861111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 143,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 144,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.15972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 145,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.791666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 146,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 147,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 148,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 149,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 150,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.95138888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 151,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 152,
+      "visibility_t_open_mjd": 61060.645833333336,
+      "visibility_t_close_mjd": 61060.65972222222,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 153,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.86111111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 154,
+      "visibility_t_open_mjd": 61061.15277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 155,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 156,
+      "visibility_t_open_mjd": 61060.930555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 157,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 158,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84027777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 159,
+      "visibility_t_open_mjd": 61060.729166666664,
+      "visibility_t_close_mjd": 61060.90277777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 160,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 161,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.680555555555,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 162,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 163,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 164,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 165,
+      "visibility_t_open_mjd": 61060.97222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 166,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 167,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.79861111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 168,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 169,
+      "visibility_t_open_mjd": 61060.90972222222,
+      "visibility_t_close_mjd": 61061.0625,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 170,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 171,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 172,
+      "visibility_t_open_mjd": 61060.90972222222,
+      "visibility_t_close_mjd": 61061.07638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 173,
+      "visibility_t_open_mjd": 61061.055555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 174,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.8125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 175,
+      "visibility_t_open_mjd": 61060.95138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 176,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.895833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 177,
+      "visibility_t_open_mjd": 61060.97222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 178,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 179,
+      "visibility_t_open_mjd": 61060.875,
+      "visibility_t_close_mjd": 61061.208333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 180,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.958333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 181,
+      "visibility_t_open_mjd": 61060.82638888889,
+      "visibility_t_close_mjd": 61061.194444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 182,
+      "visibility_t_open_mjd": 61061.256944444445,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 183,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 184,
+      "visibility_t_open_mjd": 61060.743055555555,
+      "visibility_t_close_mjd": 61061.22222222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 185,
+      "visibility_t_open_mjd": 61061.0625,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 186,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.930555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 187,
+      "visibility_t_open_mjd": 61060.854166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 188,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 189,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 190,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 191,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.958333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 192,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 193,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 194,
+      "visibility_t_open_mjd": 61061.194444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 195,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.67361111111,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 196,
+      "visibility_t_open_mjd": 61060.881944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 197,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 198,
+      "visibility_t_open_mjd": 61060.881944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 199,
+      "visibility_t_open_mjd": 61061.04861111111,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 200,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 201,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 202,
+      "visibility_t_open_mjd": 61060.854166666664,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 203,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 204,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.72222222222,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 205,
+      "visibility_t_open_mjd": 61061.28472222222,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 206,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 207,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 208,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 209,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 210,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 211,
+      "visibility_t_open_mjd": 61061.055555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 212,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 213,
+      "visibility_t_open_mjd": 61060.645833333336,
+      "visibility_t_close_mjd": 61060.645833333336,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 214,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.791666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 215,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 216,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 217,
+      "visibility_t_open_mjd": 61060.95138888889,
+      "visibility_t_close_mjd": 61061.22222222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 218,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.67361111111,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 219,
+      "visibility_t_open_mjd": 61061.256944444445,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 220,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.90972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 221,
+      "visibility_t_open_mjd": 61061.118055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 222,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 223,
+      "visibility_t_open_mjd": 61061.020833333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 224,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.71527777778,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 225,
+      "visibility_t_open_mjd": 61060.805555555555,
+      "visibility_t_close_mjd": 61061.145833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 226,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 227,
+      "visibility_t_open_mjd": 61060.930555555555,
+      "visibility_t_close_mjd": 61061.15972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 228,
+      "visibility_t_open_mjd": 61061.28472222222,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 229,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.791666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 230,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 231,
+      "visibility_t_open_mjd": 61061.125,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 232,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 233,
+      "visibility_t_open_mjd": 61061.270833333336,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 234,
+      "visibility_t_open_mjd": 61060.92361111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 235,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.82638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 236,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.708333333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 237,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.98611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 238,
+      "visibility_t_open_mjd": 61060.96527777778,
+      "visibility_t_close_mjd": 61061.083333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 239,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 240,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.958333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 241,
+      "visibility_t_open_mjd": 61061.22222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 242,
+      "visibility_t_open_mjd": 61061.20138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 243,
+      "visibility_t_open_mjd": 61060.92361111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 244,
+      "visibility_t_open_mjd": 61060.77777777778,
+      "visibility_t_close_mjd": 61061.125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 245,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.680555555555,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 246,
+      "visibility_t_open_mjd": 61061.145833333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 247,
+      "visibility_t_open_mjd": 61060.958333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 248,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.791666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 249,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.90972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 250,
+      "visibility_t_open_mjd": 61060.75,
+      "visibility_t_close_mjd": 61061.02777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 251,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 252,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 253,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 254,
+      "visibility_t_open_mjd": 61060.90277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 255,
+      "visibility_t_open_mjd": 61061.03472222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 256,
+      "visibility_t_open_mjd": 61061.083333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 257,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.854166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 258,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 259,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 260,
+      "visibility_t_open_mjd": 61060.71527777778,
+      "visibility_t_close_mjd": 61061.07638888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 261,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.708333333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 262,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 263,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 264,
+      "visibility_t_open_mjd": 61060.833333333336,
+      "visibility_t_close_mjd": 61061.09027777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 265,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 266,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 267,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 268,
+      "visibility_t_open_mjd": 61060.743055555555,
+      "visibility_t_close_mjd": 61061.03472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 269,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.006944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 270,
+      "visibility_t_open_mjd": 61061.03472222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 271,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 272,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 273,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.680555555555,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 274,
+      "visibility_t_open_mjd": 61060.75,
+      "visibility_t_close_mjd": 61061.083333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 275,
+      "visibility_t_open_mjd": 61061.0625,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 276,
+      "visibility_t_open_mjd": 61060.645833333336,
+      "visibility_t_close_mjd": 61060.65277777778,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 277,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 278,
+      "visibility_t_open_mjd": 61060.979166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 279,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.98611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 280,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 281,
+      "visibility_t_open_mjd": 61060.881944444445,
+      "visibility_t_close_mjd": 61061.20138888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 282,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 283,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 284,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 285,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 286,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.8125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 287,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.73611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 288,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.92361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 289,
+      "visibility_t_open_mjd": 61060.84027777778,
+      "visibility_t_close_mjd": 61061.17361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 290,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.98611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 291,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.895833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 292,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 293,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 294,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 295,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 296,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.743055555555,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 297,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.71527777778,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 298,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.03472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 299,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.0,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 300,
+      "visibility_t_open_mjd": 61060.8125,
+      "visibility_t_close_mjd": 61061.17361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 301,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.680555555555,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 302,
+      "visibility_t_open_mjd": 61060.98611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 303,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.98611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 304,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 305,
+      "visibility_t_open_mjd": 61060.944444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 306,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.72222222222,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 307,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 308,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 309,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 310,
+      "visibility_t_open_mjd": 61060.958333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 311,
+      "visibility_t_open_mjd": 61060.944444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 312,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 313,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 314,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 315,
+      "visibility_t_open_mjd": 61060.875,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 316,
+      "visibility_t_open_mjd": 61060.86111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 317,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 318,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 319,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 320,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 321,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 322,
+      "visibility_t_open_mjd": 61061.118055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 323,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 324,
+      "visibility_t_open_mjd": 61061.118055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 325,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 326,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.6875,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 327,
+      "visibility_t_open_mjd": 61060.95138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 328,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 329,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 330,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 331,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 332,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 333,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.875,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 334,
+      "visibility_t_open_mjd": 61061.131944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 335,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.680555555555,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 336,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.72222222222,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 337,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.854166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 338,
+      "visibility_t_open_mjd": 61060.979166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 339,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 340,
+      "visibility_t_open_mjd": 61060.88888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 341,
+      "visibility_t_open_mjd": 61061.27777777778,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 342,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.708333333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 343,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 344,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.71527777778,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 345,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 346,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.92361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 347,
+      "visibility_t_open_mjd": 61061.15277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 348,
+      "visibility_t_open_mjd": 61060.90277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 349,
+      "visibility_t_open_mjd": 61061.270833333336,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 350,
+      "visibility_t_open_mjd": 61061.055555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 351,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 352,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 353,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.73611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 354,
+      "visibility_t_open_mjd": 61060.881944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 355,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 356,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 357,
+      "visibility_t_open_mjd": 61061.09722222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 358,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.88888888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 359,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.881944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 360,
+      "visibility_t_open_mjd": 61061.118055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 361,
+      "visibility_t_open_mjd": 61061.07638888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 362,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 363,
+      "visibility_t_open_mjd": 61061.145833333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 364,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 365,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 366,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 367,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.819444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 368,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 369,
+      "visibility_t_open_mjd": 61060.95138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 370,
+      "visibility_t_open_mjd": 61060.729166666664,
+      "visibility_t_close_mjd": 61061.131944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 371,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 372,
+      "visibility_t_open_mjd": 61061.26388888889,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 373,
+      "visibility_t_open_mjd": 61060.78472222222,
+      "visibility_t_close_mjd": 61061.0,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 374,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 375,
+      "visibility_t_open_mjd": 61061.069444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 376,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 377,
+      "visibility_t_open_mjd": 61061.21527777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 378,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 379,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 380,
+      "visibility_t_open_mjd": 61060.8125,
+      "visibility_t_close_mjd": 61061.15972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 381,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 382,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 383,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 384,
+      "visibility_t_open_mjd": 61060.958333333336,
+      "visibility_t_close_mjd": 61061.15972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 385,
+      "visibility_t_open_mjd": 61060.71527777778,
+      "visibility_t_close_mjd": 61060.993055555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 386,
+      "visibility_t_open_mjd": 61060.90972222222,
+      "visibility_t_close_mjd": 61061.055555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 387,
+      "visibility_t_open_mjd": 61061.23611111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 388,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.805555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 389,
+      "visibility_t_open_mjd": 61060.875,
+      "visibility_t_close_mjd": 61061.194444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 390,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 391,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 392,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 393,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 394,
+      "visibility_t_open_mjd": 61060.645833333336,
+      "visibility_t_close_mjd": 61060.645833333336,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 395,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 396,
+      "visibility_t_open_mjd": 61061.21527777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 397,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.868055555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 398,
+      "visibility_t_open_mjd": 61060.84027777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 399,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 400,
+      "visibility_t_open_mjd": 61061.03472222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 401,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 402,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 403,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.01388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 404,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.70138888889,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 405,
+      "visibility_t_open_mjd": 61060.97222222222,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 406,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 407,
+      "visibility_t_open_mjd": 61061.04861111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 408,
+      "visibility_t_open_mjd": 61061.125,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 409,
+      "visibility_t_open_mjd": 61061.270833333336,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 410,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 411,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.020833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 412,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.729166666664,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 413,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.01388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 414,
+      "visibility_t_open_mjd": 61061.243055555555,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 415,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.79861111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 416,
+      "visibility_t_open_mjd": 61061.229166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 417,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 418,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.84722222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 419,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.98611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 420,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.868055555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 421,
+      "visibility_t_open_mjd": 61061.17361111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 422,
+      "visibility_t_open_mjd": 61061.21527777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 423,
+      "visibility_t_open_mjd": 61060.916666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 424,
+      "visibility_t_open_mjd": 61061.01388888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 425,
+      "visibility_t_open_mjd": 61060.75,
+      "visibility_t_close_mjd": 61061.01388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 426,
+      "visibility_t_open_mjd": 61061.15277777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 427,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 428,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.79861111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 429,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 430,
+      "visibility_t_open_mjd": 61061.069444444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 431,
+      "visibility_t_open_mjd": 61061.0,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 432,
+      "visibility_t_open_mjd": 61061.20138888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 433,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.90972222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 434,
+      "visibility_t_open_mjd": 61060.979166666664,
+      "visibility_t_close_mjd": 61061.208333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 435,
+      "visibility_t_open_mjd": 61060.86111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 436,
+      "visibility_t_open_mjd": 61060.819444444445,
+      "visibility_t_close_mjd": 61061.21527777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 437,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 438,
+      "visibility_t_open_mjd": 61061.104166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 439,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.833333333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 440,
+      "visibility_t_open_mjd": 61060.73611111111,
+      "visibility_t_close_mjd": 61061.13888888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 441,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 442,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.756944444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 443,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 444,
+      "visibility_t_open_mjd": 61061.041666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 445,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 446,
+      "visibility_t_open_mjd": 61061.291666666664,
+      "visibility_t_close_mjd": 61061.291666666664,
+      "sun_cap_used": 0.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 447,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.819444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 448,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 449,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 450,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.743055555555,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 451,
+      "visibility_t_open_mjd": 61060.916666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 452,
+      "visibility_t_open_mjd": 61060.88888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 453,
+      "visibility_t_open_mjd": 61060.868055555555,
+      "visibility_t_close_mjd": 61061.229166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 454,
+      "visibility_t_open_mjd": 61060.77777777778,
+      "visibility_t_close_mjd": 61061.041666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 455,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.78472222222,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 456,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 457,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.75,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 458,
+      "visibility_t_open_mjd": 61061.069444444445,
+      "visibility_t_close_mjd": 61061.180555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 459,
+      "visibility_t_open_mjd": 61061.118055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 460,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.979166666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 461,
+      "visibility_t_open_mjd": 61060.791666666664,
+      "visibility_t_close_mjd": 61061.0,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 462,
+      "visibility_t_open_mjd": 61061.25,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 463,
+      "visibility_t_open_mjd": 61060.993055555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 464,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 465,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 466,
+      "visibility_t_open_mjd": 61061.006944444445,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 467,
+      "visibility_t_open_mjd": 61060.979166666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 468,
+      "visibility_t_open_mjd": 61060.86111111111,
+      "visibility_t_close_mjd": 61060.895833333336,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 469,
+      "visibility_t_open_mjd": 61061.07638888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 470,
+      "visibility_t_open_mjd": 61061.055555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 471,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 472,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.77777777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 473,
+      "visibility_t_open_mjd": 61061.09027777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 474,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.875,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 475,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.88888888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 476,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.916666666664,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 477,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61061.0625,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 478,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 479,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.86111111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 480,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.73611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 481,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 482,
+      "visibility_t_open_mjd": 61060.875,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 483,
+      "visibility_t_open_mjd": 61061.166666666664,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 484,
+      "visibility_t_open_mjd": 61060.958333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 485,
+      "visibility_t_open_mjd": 61061.04861111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 486,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 487,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.770833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 488,
+      "visibility_t_open_mjd": 61060.90972222222,
+      "visibility_t_close_mjd": 61061.145833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 489,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.944444444445,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 490,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.92361111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 491,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 492,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.21527777778,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 493,
+      "visibility_t_open_mjd": 61061.11111111111,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 494,
+      "visibility_t_open_mjd": 61061.21527777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 495,
+      "visibility_t_open_mjd": 61061.13888888889,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 496,
+      "visibility_t_open_mjd": 61060.930555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 497,
+      "visibility_t_open_mjd": 61061.1875,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 498,
+      "visibility_t_open_mjd": 61061.35972222222,
+      "visibility_t_close_mjd": 61061.40138888889,
+      "sun_cap_used": null
+    },
+    {
+      "session_seed": 499,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.8125,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 500,
+      "visibility_t_open_mjd": 61060.71527777778,
+      "visibility_t_close_mjd": 61061.01388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 501,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.72222222222,
+      "sun_cap_used": -12.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 502,
+      "visibility_t_open_mjd": 61061.0625,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 503,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.666666666664,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 504,
+      "visibility_t_open_mjd": 61061.083333333336,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 505,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.895833333336,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 506,
+      "visibility_t_open_mjd": 61061.180555555555,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 507,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.930555555555,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 508,
+      "visibility_t_open_mjd": 61060.666666666664,
+      "visibility_t_close_mjd": 61060.694444444445,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 509,
+      "visibility_t_open_mjd": 61060.708333333336,
+      "visibility_t_close_mjd": 61060.76388888889,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 510,
+      "visibility_t_open_mjd": 61061.256944444445,
+      "visibility_t_close_mjd": 61061.27777777778,
+      "sun_cap_used": -3.0,
+      "below_min_span_hours": true
+    },
+    {
+      "session_seed": 511,
+      "visibility_t_open_mjd": 61061.02777777778,
+      "visibility_t_close_mjd": 61061.23611111111,
+      "sun_cap_used": -12.0
+    },
+    {
+      "session_seed": 512,
+      "visibility_t_open_mjd": 61061.104166666664,
       "visibility_t_close_mjd": 61061.23611111111,
       "sun_cap_used": -12.0
     }

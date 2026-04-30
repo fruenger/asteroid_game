@@ -12,7 +12,10 @@ from astropy.time import Time
 
 from observation_window import (
     compute_night_visibility_window,
+    compute_night_visibility_window_detailed,
+    game_time_to_utc,
     helio_to_topocentric_manual_dir,
+    solar_topocentric_manual_dir,
     utc_time_to_game_time,
 )
 from orbit_catalog import N_CATALOG, catalog_index_for_seed, classical_orbit_from_seed
@@ -54,6 +57,30 @@ class TestGameTimeMapping(unittest.TestCase):
         g0 = utc_time_to_game_time(t0, loc)
         g1 = utc_time_to_game_time(t1, loc)
         self.assertLess(g0, g1)
+
+    def test_game_time_to_utc_roundtrip(self) -> None:
+        loc = EarthLocation(lon=13.0 * u.deg, lat=52.0 * u.deg, height=0.0 * u.m)
+        ref = dt.date(2024, 6, 15)
+        t0 = Time("2024-06-15T21:40:00", scale="utc")
+        g = utc_time_to_game_time(t0, loc)
+        t1 = game_time_to_utc(g, ref, loc)
+        self.assertLess(abs(float((t1 - t0).to(u.s).value)), 2.0)
+
+    def test_visibility_detailed_sun_cap(self) -> None:
+        loc = EarthLocation(lon=13.0 * u.deg, lat=52.0 * u.deg, height=0.0 * u.m)
+        day = dt.date(2024, 6, 15)
+        orb, _ = classical_orbit_from_seed(1, day)
+        _a, _b, cap, synth = compute_night_visibility_window_detailed(
+            orb, day, loc, h_min_deg=10.0, step_minutes=15.0
+        )
+        if not synth:
+            self.assertIn(cap, (-12.0, -3.0, 0.0))
+
+    def test_solar_manual_unit(self) -> None:
+        loc = EarthLocation(lon=13.0 * u.deg, lat=52.0 * u.deg, height=0.0 * u.m)
+        t = Time("2024-06-15T12:00:00", scale="utc")
+        v = solar_topocentric_manual_dir(t, loc)
+        self.assertAlmostEqual(float(np.linalg.norm(v)), 1.0, places=5)
 
 
 if __name__ == "__main__":

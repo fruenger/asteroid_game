@@ -7,6 +7,7 @@ per-frame hints (telescope axis, dome ray) so a native host can supply geometry 
 
 from __future__ import annotations
 
+import datetime as dt
 import os
 import time
 from dataclasses import InitVar, dataclass, field
@@ -15,9 +16,22 @@ from typing import Any, Optional
 import numpy as np
 from scipy.ndimage import gaussian_filter
 
-import b1_kinematics as _b1k
+import rig_kinematics as _rk
 from celestial_settings import apply_horizontal_yaw_y_up, diurnal_sign
-from game_strings import TIME_WINDOW_REJECT_TOAST
+from game_i18n import tr
+
+
+def ephemeris_hints_verbose_enabled(explicit: bool = False) -> bool:
+    """
+    Extra Hilfe zu Referenzdatum vs. Kalender / Katalogzeilen.
+
+    ``explicit`` comes from ``touch_game_bridge.session_init(..., verbose_ephemeris_hints=…)`` or
+    ``AsteroidGameState(verbose_ephemeris_hints=…)``. Else ``GAME_EPHEMERIS_HINTS_VERBOSE=1`` toggles.
+    """
+    if explicit:
+        return True
+    return os.environ.get("GAME_EPHEMERIS_HINTS_VERBOSE", "").strip().lower() in ("1", "true", "yes")
+
 
 # Pure NumPy copies of orbit_api.time_str / sun_direction — avoids importing poliastro here
 # so Phase A tests run without the full ephemeris stack. Keep in sync with orbit_api.py.
@@ -54,12 +68,14 @@ def sun_direction(t: float, latitude: float, sun_declination: float) -> np.ndarr
 
 MAX_SPEED = 10.0
 ACCEL = 20.0
+# Step 4: dome slew (arrows / brackets); slightly faster response than step-3 dome nudge (~1.5x).
+DOME_STEP3_SPEED_FACTOR = 1.5
 DOME_RAY_CLEAR_DISTANCE = 100.0
 
 
 def align_dot_threshold() -> float:
     """
-    Minimum dot(object, optical_axis) to advance step 2 → 3.
+    Minimum dot(object, optical_axis) to advance step 3 → 4.
     ``GAME_ALIGN_MAX_ANGLE_DEG`` — half-angle tolerance in degrees (default 0.5).
     """
     raw = os.environ.get("GAME_ALIGN_MAX_ANGLE_DEG", "").strip()
@@ -98,52 +114,26 @@ EXPOSURE_COMMIT_SEC = 3.0
 IMAGE_TICK_INTERVAL = 0.1
 STEP5_BLINK_INTERVAL = 0.5
 
-
-HELP_TEXTS: dict[int, str] = {
-    0: (
-        "In den Tiefen des Sonnensystems wurde ein noch unbekanntes kleines Objekt mit einem "
-        "robotischen Teleskop gesichtet. Heute Nacht ist es unsere Aufgabe, dessen Nachverfolgung "
-        "aufzunehmen. Dazu müssen wir zunächst warten, bis es über dem Horizont steht. Das ist heute "
-        "Nacht zwischen %s und %s Uhr. Warte, bis wir im Zeitfenster sind, und drücke dann die Taste "
-        "„Beobachtung beginnen”, um die Zeit zu pausieren."
-    ),
-    1: (
-        "Nun muss die Sternwarte geöffnet und die Technik im Inneren hochgefahren werden. Das kann "
-        "durch Betätigen der „Sternwarte öffnen“-Taste bewerkstelligt werden."
-    ),
-    2: (
-        "Sobald die Sternwarte vollständig geöffnet ist, steuere das Teleskop an die vorgegebene "
-        "Himmelsposition. Diese ist am Himmel mit einem kleinen roten Punkt markiert. Zur besseren "
-        "Orientierung benutzen wir heute unseren Navigierlaser (blauer Strahl). Die Teleskopachsen "
-        "steuerst du mit den Pfeiltasten. Das ist nun Deine Aufgabe!"
-    ),
-    3: (
-        "Nun schaut das Teleskop auf den Himmelsbereich unserer Wahl. Allerdings muss auch die Kuppel "
-        "korrekt ausgerichtet sein. Dazu muss der Kuppelspalt so ausgerichtet werden, dass wir durch "
-        "das Teleskop freie Sicht auf den Himmel haben. Mit den Pfeiltasten kannst du die Kuppel "
-        "drehen, damit wir mit den Beobachtungen beginnen können."
-    ),
-    4: (
-        "Mache drei Bilder nacheinander und warte, bis das jeweilige Bild ein gutes "
-        "Signal-Rausch-Verhältnis hat, sodass man rund 20 Sterne klar erkennen kann. Wenn du mit "
-        "dem jeweiligen Bild zufrieden bist, drücke die Taste „Aufnahme stoppen”."
-    ),
-    5: (
-        "Tippe auf das sich bewegende Objekt. Wenn du das Objekt auf deinen Bildern noch nicht "
-        "erkennen kannst, kannst du mit „Von vorne starten” drei neue Aufnahmen anfertigen."
-    ),
-    6: (
-        "Die Beobachtung war erfolgreich! Damit das neu entdeckte Objekt in unseren "
-        "OST-Asteroidenkatalog aufgenommen werden kann, benötigt es noch einen Namen. Bitte trage "
-        "auch das Entdeckerteam ein. Mit [Tab] springst du zwischen den Feldern. Wenn alles passt, "
-        "speicherst du den Eintrag über die Taste „Speichern“."
-    ),
-    7: (
-        "In der Tabelle sind alle bisher mit dem OST entdeckten Asteroiden aufgeführt. Die große "
-        "Halbachse und die Umlaufzeit stammen von der jeweiligen Bahnberechnung. Mit „Zurück zur "
-        "App-Übersicht“ beendest du deine Beobachtungssession."
-    ),
-}
+_FUN_DISCOVERER_TEAM_NAMES: tuple[str, ...] = (
+    "Galileo Galilei",
+    "Johannes Kepler",
+    "Tycho Brahe",
+    "Nicolaus Copernicus",
+    "Isaac Newton",
+    "William Herschel",
+    "Caroline Herschel",
+    "Annie Jump Cannon",
+    "Cecilia Payne-Gaposchkin",
+    "Edwin Hubble",
+    "Henrietta Swan Leavitt",
+    "Vera Rubin",
+    "Subrahmanyan Chandrasekhar",
+    "Fritz Zwicky",
+    "Percival Lowell",
+    "Carl Sagan",
+    "Ada Lovelace",
+    "Hipparch von Rhodos",
+)
 
 
 def wrap_text(text: str, width: int) -> str:
@@ -169,7 +159,7 @@ class KeysHeld:
     up: bool = False
     down: bool = False
     r: bool = False
-    dome_ccw: bool = False  # e.g. [ — Kuppel Azimut (Schritt 3)
+    dome_ccw: bool = False  # e.g. [ — Kuppel Azimut (Schritt 3–4)
     dome_cw: bool = False  # e.g. ]
 
 
@@ -184,10 +174,10 @@ class KeysInput:
 class FrameHints:
     """
     Optional geometry from the renderer (Ursina today, GLES host later).
-    Step 2 → 3: if ``defer_telescope_target_alignment`` is True (Ursina), the host must call
+    Step 3 → 4: if ``defer_telescope_target_alignment`` is True (Ursina), the host must call
     ``apply_telescope_target_alignment`` with the rendered optical axis after scene joints update.
-    If False (B1), alignment uses ``b1_kinematics`` inside ``tick`` after RA/Dec integration.
-    If dome_ray_exit_distance is None during step 3, automatic advance to step 4 is disabled
+    If False (native touch host), alignment uses ``rig_kinematics`` inside ``tick`` after RA/Dec integration.
+    If dome_ray_exit_distance is None during step 4, automatic advance to step 5 is disabled
     (unless cheat_through).
     """
 
@@ -231,10 +221,20 @@ class AsteroidGameState:
     object_dir_cartesian: np.ndarray
     sun_dec_deg: float = 0.5
     latitude_deg: float = 52.0
+    longitude_deg: float = 13.0
     imsize: int = 250
     cheat_through: bool = False
 
-    step: int = 0
+    """Ephemeris session (optional): when set, ``object_dir_cartesian`` and Sun follow Astropy."""
+    reference_date: Optional[dt.date] = None
+    session_seed: int = 0
+    visibility_t_open_mjd: Optional[float] = None
+    visibility_t_close_mjd: Optional[float] = None
+    catalog_display_date: Optional[dt.date] = None
+    ephemeris_orbit: Optional[Any] = None
+    verbose_ephemeris_hints: bool = False
+
+    step: int = 1
     time_now: float = 0.0
     time_stopped: bool = False
     _time_wall_anchor: Optional[float] = field(default=None, init=False, repr=False)
@@ -242,7 +242,7 @@ class AsteroidGameState:
     _start_before_window_enabled: bool = field(default=True, init=False, repr=False)
     _start_before_window_hours: float = field(default=2.5, init=False, repr=False)
     paused_help: bool = False
-    # none | help | controls — which overlay b1_host shows when paused_help
+    # none | help | controls — which overlay asteroid_game_touch shows when paused_help
     help_overlay_kind: str = "none"
     _help_pause_start_wall_t: Optional[float] = field(default=None, init=False, repr=False)
     """Subtract from wall_t in _advance_time so celestial time does not run while paused_help."""
@@ -290,6 +290,26 @@ class AsteroidGameState:
     image_array: np.ndarray = field(init=False)
     all_images_perfect: list[np.ndarray] = field(init=False)
     image_locations: np.ndarray = field(init=False)
+    # True topocentric unit direction (ephemeris); markers and telescope alignment use this. ``object_dir_cartesian`` stays rig-snapped for legacy/catalog.
+    object_dir_visual_cartesian: np.ndarray = field(init=False)
+    # Filled in ``_sync_ephemeris_geometry`` when ``reference_date`` is set (avoids a second ``game_time_to_utc`` + ``solar_topocentric_manual_dir`` per tick).
+    _sun_unit_vector_ephemeris: Optional[np.ndarray] = field(default=None, init=False, repr=False)
+    _cached_earth_location: Any = field(default=None, init=False, repr=False)
+
+    def _observer_earth_location(self) -> Any:
+        """Astropy ``EarthLocation`` for current lat/lon; cached for the session."""
+        loc = self._cached_earth_location
+        if loc is not None:
+            return loc
+        from astropy.coordinates import EarthLocation
+        import astropy.units as u
+
+        self._cached_earth_location = EarthLocation(
+            lon=float(self.longitude_deg) * u.deg,
+            lat=float(self.latitude_deg) * u.deg,
+            height=0.0 * u.m,
+        )
+        return self._cached_earth_location
 
     def __post_init__(
         self,
@@ -299,6 +319,7 @@ class AsteroidGameState:
         od = np.asarray(self.object_dir_cartesian, dtype=np.float64).reshape(3)
         n = np.linalg.norm(od)
         self.object_dir_cartesian = od / (n if n > 1e-12 else 1.0)
+        self.object_dir_visual_cartesian = np.asarray(self.object_dir_cartesian, dtype=np.float64).reshape(3).copy()
         self.image_array = np.zeros((self.imsize, self.imsize), dtype=float)
         if perfect_stack is not None and locations_stack is not None:
             self.all_images_perfect = [np.asarray(x, dtype=np.float64).copy() for x in perfect_stack]
@@ -314,8 +335,46 @@ class AsteroidGameState:
         except ValueError:
             self._start_before_window_hours = 2.5
 
-    def _apply_friction(self, speed: float, dt: float) -> float:
-        return speed - (ACCEL / 2.0) * dt * np.sign(speed)
+    def _sync_ephemeris_geometry(self) -> None:
+        if self.reference_date is None:
+            self._sun_unit_vector_ephemeris = None
+            return
+        from observation_window import game_time_to_utc, helio_to_topocentric_manual_dir, solar_topocentric_manual_dir
+        from scenario import _snap_object_dir_to_telescope_rig
+
+        loc = self._observer_earth_location()
+        t_utc = game_time_to_utc(self.time_now, self.reference_date, loc)
+        # One topocentric solve per tick (shared ``t_utc`` + ``loc`` with asteroid path below).
+        self._sun_unit_vector_ephemeris = solar_topocentric_manual_dir(t_utc, loc)
+        if self.ephemeris_orbit is None:
+            return
+        manual = helio_to_topocentric_manual_dir(self.ephemeris_orbit, t_utc, loc)
+        mn = float(np.linalg.norm(manual))
+        manual_n = np.asarray(manual, dtype=np.float64).reshape(3) / (mn if mn > 1e-12 else 1.0)
+        v = np.asarray(_snap_object_dir_to_telescope_rig(manual_n), dtype=np.float64).reshape(3)
+        n = float(np.linalg.norm(v))
+        self.object_dir_cartesian = v / (n if n > 1e-12 else 1.0)
+        self.object_dir_visual_cartesian = manual_n
+
+    def _time_now_in_visibility_window(self) -> bool:
+        if (
+            self.visibility_t_open_mjd is None
+            or self.visibility_t_close_mjd is None
+            or self.reference_date is None
+        ):
+            return bool(self.min_time < self.time_now < self.max_time)
+        from astropy.time import Time
+
+        from observation_window import game_time_to_utc
+
+        t0 = Time(float(self.visibility_t_open_mjd), format="mjd", scale="utc")
+        t1 = Time(float(self.visibility_t_close_mjd), format="mjd", scale="utc")
+        loc = self._observer_earth_location()
+        tutc = game_time_to_utc(self.time_now, self.reference_date, loc)
+        return float(t0.mjd) < float(tutc.mjd) < float(t1.mjd)
+
+    def _apply_friction(self, speed: float, dt: float, *, accel_scale: float = 1.0) -> float:
+        return speed - (ACCEL * accel_scale / 2.0) * dt * np.sign(speed)
 
     def _advance_time(self, wall_t: float) -> None:
         if self.time_stopped:
@@ -331,48 +390,46 @@ class AsteroidGameState:
         self.time_now = (self._time_now_at_anchor + (wt - self._time_wall_anchor) * rate) % 1.0
 
     def infotext_message(self) -> str:
-        if self.step == 0:
-            return (
-                "Das Beobachtungsfenster ist zwischen %s und %s Uhr heute Nacht. Warte und "
-                "druecke [LEERTASTE], um die Beobachtung zu beginnen."
-                % (time_str(self.min_time), time_str(self.max_time))
-            )
-        if self.step == 1:
-            return "Öffne das Observatorium mit [Z]."
-        if self.step == 2:
-            return "Richte das Teleskop auf das Ziel aus. Kuppel bei Bedarf mit [ und ]."
-        if self.step == 3:
-            return "Richte die Kuppel mit [←][→] oder [ und ] auf das Objekt aus."
-        if self.step == 4:
-            return "Die Kamera belichtet ... Drücke [LEERTASTE], um ein Bild zu machen"
-        if self.step == 5:
-            return (
-                "Wähle das sich bewegende Objekt mit der [linken Maustaste] aus. (Mit [R] kannst "
-                "du auf die drei Aufnahmen noch einmal von vorn starten falls du auf deinen "
-                "Bildern das Objekt noch nicht erkennen kannst.)"
-            )
-        if self.step == 6:
-            return (
-                "Trage rechts Objektname und Entdeckerteam ein — [Tab] wechselt das Feld, [Enter] "
-                "speichert. Die ausführliche Anleitung steht links in der Hilfebox."
-            )
-        if self.step == 7:
-            return (
-                "Katalogübersicht — [Enter] beendet die Anwendung. Kurzhilfe: Taste [H]."
-            )
+        s = self.step
+        if s == 1:
+            return tr("infotext.step.1").format(min_time=time_str(self.min_time), max_time=time_str(self.max_time))
+        if 2 <= s <= 8:
+            return tr(f"infotext.step.{s}")
         return ""
 
     def help_body_text(self) -> str:
-        if self.step == 0:
-            return HELP_TEXTS[0] % (time_str(self.min_time), time_str(self.max_time))
-        return HELP_TEXTS.get(self.step, "")
+        if self.step == 1:
+            body = tr(f"help.steps.{self.step}").format(min_time=time_str(self.min_time), max_time=time_str(self.max_time))
+            if (
+                self.verbose_ephemeris_hints
+                and self.reference_date is not None
+                and self.catalog_display_date is not None
+                and self.reference_date != self.catalog_display_date
+            ):
+                body += tr("help.ephemeris_note").format(
+                    reference_date=self.reference_date.isoformat(),
+                    catalog_date=self.catalog_display_date.isoformat(),
+                )
+            return body
+        if 2 <= self.step <= 8:
+            return tr(f"help.steps.{self.step}")
+        return ""
 
     def sun_unit_vector(self) -> np.ndarray:
+        if self.reference_date is not None:
+            su = self._sun_unit_vector_ephemeris
+            if su is not None:
+                return su
+            from observation_window import game_time_to_utc, solar_topocentric_manual_dir
+
+            loc = self._observer_earth_location()
+            t_utc = game_time_to_utc(self.time_now, self.reference_date, loc)
+            return solar_topocentric_manual_dir(t_utc, loc)
         return sun_direction(self.time_now, self.latitude_deg, self.sun_dec_deg)
 
     def stage4_can_expose(self) -> bool:
         """True when step 4 imaging logic should run (after intro pause)."""
-        return self.step == 4 and self._stage4_exposure_unlock_wall_t == 0.0
+        return self.step == 5 and self._stage4_exposure_unlock_wall_t == 0.0
 
     def _reset_stage4_imaging(self, wall_t: float) -> None:
         """Clear partial or completed captures; stay on step 4 with a fresh stack."""
@@ -386,17 +443,49 @@ class AsteroidGameState:
         self._step4_space_was_held = False
 
     def step4_primary_button_label(self) -> str:
-        if self.step != 4:
+        if self.step != 5:
             return ""
         if self._stage4_exposure_unlock_wall_t > 0.0:
-            return "Aufnahme starten"
+            return tr("buttons.exposure.start")
         if self.step4_exposure_active:
-            if len(self.all_images) == 2:
-                return "Letzte Aufnahme speichern"
-            return "Aufnahme speichern"
+            ni = len(self.all_images)
+            if ni == 0:
+                return tr("buttons.exposure.save")
+            if ni == 1:
+                return tr("buttons.exposure.save_second")
+            if ni == 2:
+                return tr("buttons.exposure.save_third")
+            return tr("buttons.exposure.save")
         if len(self.all_images) == 0:
-            return "Aufnahme starten"
-        return "Nächste Aufnahme starten"
+            return tr("buttons.exposure.start")
+        return tr("buttons.exposure.start_next")
+
+    def step7_panel_marker_pixels(self) -> tuple[float, float, float]:
+        """Current animation frame: asteroid position for ``image_shown`` (row, col, radius px)."""
+        loc = np.asarray(self.image_locations, dtype=np.float64)
+        if loc.shape != (2, 3) or not self.all_images:
+            im = float(max(1, int(self.imsize)))
+            return im * 0.5, im * 0.5, im * 0.08
+        idx = int(self.image_shown) % 3
+        row = float(loc[0, idx])
+        col = float(loc[1, idx])
+        r = max(float(self.imsize) * 0.055, 6.0)
+        return row, col, r
+
+    def step6_identified_marker_pixels(self) -> tuple[float, float, float]:
+        """
+        Center `(row from top, column from left)` and ring radius in pixels for the co-added
+        summary image — from the three synthetic exposure positions in ``image_locations``.
+        """
+        loc = np.asarray(self.image_locations, dtype=np.float64)
+        if loc.shape != (2, 3):
+            im = float(max(1, int(self.imsize)))
+            return im * 0.5, im * 0.5, im * 0.08
+        center = np.mean(loc, axis=1)
+        dist = np.sqrt(np.sum((loc - np.expand_dims(center, axis=1)) ** 2, axis=0))
+        r = float(np.max(dist)) + float(self.imsize) * 0.035
+        r = max(r, float(self.imsize) * 0.045)
+        return float(center[0]), float(center[1]), r
 
     def try_step5_pick(self, pixel_xy: tuple[float, float]) -> bool:
         """
@@ -404,7 +493,7 @@ class AsteroidGameState:
         same as ``image_locations`` and ``game_app`` after the Ursina local transform.
         Returns True if the pick hits the asteroid (advances to step 6).
         """
-        if self.step != 5 or len(self.all_images) != 3:
+        if self.step != 6 or len(self.all_images) != 3:
             return False
         local_point = np.array(pixel_xy, dtype=np.float64)
         dist = float(
@@ -418,7 +507,7 @@ class AsteroidGameState:
             )
         )
         if dist / float(self.imsize) < 0.05:
-            self.step = 6
+            self.step = 7
             self.image_panel_enabled = True
             self._reset_step6_form()
             return True
@@ -428,13 +517,13 @@ class AsteroidGameState:
         from game_catalog_common import default_object_name
 
         self.step6_object_name = default_object_name()
-        self.step6_discoverer = "Name d. Entdeckerteams"
+        self.step6_discoverer = (tr("form.step7.discoverer_placeholder") or "").strip()
         self.step6_focus_idx = 0
         self.step6_catalog_ready = True
 
     def step6_key_action(self, kind: str, text: str = "") -> dict[str, Any]:
         out: dict[str, Any] = {"handled": False, "process_exit": False}
-        if self.step != 6:
+        if self.step != 7:
             return out
         max_len = 30
         if kind == "char" and text:
@@ -465,13 +554,17 @@ class AsteroidGameState:
         if kind == "save":
             from game_catalog_common import append_catalog_entry
 
+            discoverer = (self.step6_discoverer or "").strip()
+            if not discoverer:
+                discoverer = str(self.rng.choice(_FUN_DISCOVERER_TEAM_NAMES))
+                self.step6_discoverer = discoverer
             a = float(self.step6_orbit_a_au)
             p = float(self.step6_orbit_p_yr)
             if a > 0.0 and p > 0.0:
-                append_catalog_entry(self.step6_object_name, self.step6_discoverer, a_au=a, period_yr=p)
+                append_catalog_entry(self.step6_object_name, discoverer, a_au=a, period_yr=p)
             else:
-                append_catalog_entry(self.step6_object_name, self.step6_discoverer)
-            self.step = 7
+                append_catalog_entry(self.step6_object_name, discoverer)
+            self.step = 8
             self.image_panel_enabled = False
             out["handled"] = True
             out["process_exit"] = False
@@ -480,7 +573,7 @@ class AsteroidGameState:
 
     def step7_key_action(self, kind: str) -> dict[str, Any]:
         out: dict[str, Any] = {"handled": False, "process_exit": False}
-        if self.step != 7:
+        if self.step != 8:
             return out
         if kind in ("finish", "enter", "return"):
             out["handled"] = True
@@ -490,17 +583,17 @@ class AsteroidGameState:
     def apply_telescope_target_alignment(self, optical_world_unit: np.ndarray) -> list[str]:
         """
         Ursina: call once per frame after ``ra_pivot`` / ``dec_pivot`` match ``ra_deg`` / ``dec_deg``.
-        Uses the same world-space axis as the drawn laser (Panda), not ``b1_kinematics`` alone.
+        Uses the same world-space axis as the drawn laser (Panda), not ``rig_kinematics`` alone.
         """
-        if self.step != 2 or self.paused_help:
+        if self.step != 3 or self.paused_help:
             return []
         _ang, dot = telescope_target_alignment_misalignment_deg(
-            optical_world_unit, self.object_dir_cartesian
+            optical_world_unit, self.object_dir_visual_cartesian
         )
         if np.isnan(dot):
             return []
         if dot > align_dot_threshold():
-            self.step = 3
+            self.step = 4
             return ["telescope_aligned"]
         return []
 
@@ -530,7 +623,7 @@ class AsteroidGameState:
                 out["toast"] = toast_out
             return out
 
-        if self.step == 4 and self._stage4_exposure_unlock_wall_t > 0.0:
+        if self.step == 5 and self._stage4_exposure_unlock_wall_t > 0.0:
             if wall_t < self._stage4_exposure_unlock_wall_t:
                 out["time_display"] = time_str(self.time_now)
                 out["infotext"] = self.infotext_message()
@@ -542,8 +635,9 @@ class AsteroidGameState:
             self._stage4_exposure_unlock_wall_t = 0.0
 
         self._advance_time(wall_t)
+        self._sync_ephemeris_geometry()
 
-        if self.step == 2:
+        if self.step == 3:
             h = keys.held
             self.telescope_speed_ra = float(
                 np.clip(
@@ -584,23 +678,26 @@ class AsteroidGameState:
             self.dome_speed_az = self._apply_friction(self.dome_speed_az, dt)
             self.dome_az_deg += self.dome_speed_az * dt
 
-        if self.step == 3:
+        if self.step == 4:
+            sf = float(DOME_STEP3_SPEED_FACTOR)
+            a3 = ACCEL * sf
+            vmax3 = MAX_SPEED * sf
             h = keys.held
             dome_l = float(h.left or h.dome_ccw)
             dome_r = float(h.right or h.dome_cw)
             self.dome_speed_az = float(
                 np.clip(
                     self.dome_speed_az
-                    + ACCEL * dt * dome_l
-                    - ACCEL * dt * dome_r,
-                    -MAX_SPEED,
-                    MAX_SPEED,
+                    + a3 * dt * dome_l
+                    - a3 * dt * dome_r,
+                    -vmax3,
+                    vmax3,
                 )
             )
-            self.dome_speed_az = self._apply_friction(self.dome_speed_az, dt)
+            self.dome_speed_az = self._apply_friction(self.dome_speed_az, dt, accel_scale=sf)
             self.dome_az_deg += self.dome_speed_az * dt
 
-        if self.step == 2:
+        if self.step == 3:
             self.observatory_open_t += dt
             if self.observatory_open_t >= OBSERVATORY_OPEN_DURATION:
                 self.observatory_fully_open = True
@@ -609,22 +706,22 @@ class AsteroidGameState:
                 out["events"].append("laser_and_marker_ready")
 
             if not hints.defer_telescope_target_alignment:
-                u = np.asarray(_b1k.optical_axis_world_unit(self.ra_deg, self.dec_deg), dtype=np.float64).reshape(3)
+                u = np.asarray(_rk.optical_axis_world_unit(self.ra_deg, self.dec_deg), dtype=np.float64).reshape(3)
                 un = float(np.linalg.norm(u))
                 if un > 1e-12:
                     u = u / un
-                    obj = np.asarray(self.object_dir_cartesian, dtype=np.float64).reshape(3)
+                    obj = np.asarray(self.object_dir_visual_cartesian, dtype=np.float64).reshape(3)
                     on = float(np.linalg.norm(obj))
                     if on > 1e-12:
                         obj = obj / on
                     if float(np.dot(obj, u)) > align_dot_threshold():
-                        self.step = 3
+                        self.step = 4
                         out["events"].append("telescope_aligned")
 
-        if self.step == 3:
+        if self.step == 4:
             dist = hints.dome_ray_exit_distance
             if self.cheat_through or (dist is not None and dist > DOME_RAY_CLEAR_DISTANCE):
-                self.step = 4
+                self.step = 5
                 self._stage4_exposure_unlock_wall_t = wall_t + STAGE4_PAUSE_SEC
                 self.stage4_panel_on_wall_t = wall_t
                 self.image_panel_enabled = True
@@ -634,7 +731,7 @@ class AsteroidGameState:
                 self._step4_space_was_held = False
                 out["events"].append("entered_stage4")
 
-        if self.step == 4 and self._stage4_exposure_unlock_wall_t == 0.0:
+        if self.step == 5 and self._stage4_exposure_unlock_wall_t == 0.0:
             if keys.held.r:
                 self._reset_stage4_imaging(wall_t)
                 out["events"].append("stage4_imaging_reset")
@@ -660,19 +757,23 @@ class AsteroidGameState:
                         self.image_array = np.zeros((self.imsize, self.imsize))
                         self.last_image_tick_wall_t = wall_t
                         self.exposure_time = 0.0
-                        self.step4_exposure_active = False
                         if len(self.all_images) == 3:
-                            self.step = 5
+                            self.step4_exposure_active = False
+                            self.step = 6
                             self.last_step5_blink_wall_t = wall_t
                             self.image_panel_enabled = True
                             out["events"].append("imaging_complete")
+                        else:
+                            self.step4_exposure_active = True
+                            self.exposure_time = 0.0
+                            self.last_image_tick_wall_t = wall_t
 
                 self._step4_space_was_held = space_now
 
-        if self.step == 5:
+        if self.step == 6:
             if keys.held.r:
                 self._reset_stage4_imaging(wall_t)
-                self.step = 4
+                self.step = 5
                 self.last_step5_blink_wall_t = wall_t
                 out["events"].append("imaging_restarted")
             elif wall_t - self.last_step5_blink_wall_t > STEP5_BLINK_INTERVAL and self.all_images:
@@ -693,17 +794,23 @@ class AsteroidGameState:
                     )
                 )
                 if dist / self.imsize < 0.05:
-                    self.step = 6
+                    self.step = 7
                     self.image_panel_enabled = True
                     self._reset_step6_form()
+                    self.last_step5_blink_wall_t = wall_t
                     out["events"].append("asteroid_picked")
+
+        if self.step == 7:
+            if self.all_images and wall_t - self.last_step5_blink_wall_t > STEP5_BLINK_INTERVAL:
+                self.image_shown = (int(self.image_shown) + 1) % len(self.all_images)
+                self.last_step5_blink_wall_t = wall_t
 
         out["time_display"] = time_str(self.time_now)
         out["infotext"] = self.infotext_message()
         out["sun_direction"] = self.sun_unit_vector()
         if toast_out:
             out["toast"] = toast_out
-        if self.step == 4:
+        if self.step == 5:
             out["step4_primary_button_label"] = self.step4_primary_button_label()
         return out
 
@@ -711,21 +818,22 @@ class AsteroidGameState:
         """Matches game.py `input(key)` for non-held actions."""
         out: dict[str, Any] = {"events": [], "handled": False}
 
-        if key == "space" and self.step == 0:
+        if key == "space" and self.step == 1:
             self._advance_time(wall_t)
-            if self.min_time < self.time_now < self.max_time:
+            self._sync_ephemeris_geometry()
+            if self._time_now_in_visibility_window():
                 self.time_stopped = True
-                self.step = 1
+                self.step = 2
                 out["events"].append("time_window_ok")
             else:
-                self.toast_message = TIME_WINDOW_REJECT_TOAST
+                self.toast_message = tr("toast.time_window_reject")
                 self.toast_until_wall_t = float(wall_t) + 2.5
                 out["events"].append("time_window_reject")
             out["handled"] = True
             return out
 
-        if key == "z" and self.step == 1:
-            self.step = 2
+        if key == "z" and self.step == 2:
+            self.step = 3
             self.observatory_open_t = 0.0
             self.observatory_fully_open = False
             self.laser_and_marker_ready = False
@@ -779,3 +887,11 @@ class AsteroidGameState:
         self.paused_help = False
         self.help_overlay_kind = "none"
         self._help_pause_start_wall_t = None
+
+    def debug_jump_step8_for_native_ui_test(self, wall_t: float) -> None:
+        """Native host only: jump to step 8 to exercise catalog UI (skips normal game flow)."""
+        wt = float(wall_t)
+        if self.paused_help:
+            self.close_help_overlay(wt)
+        self.step = 8
+        self.image_panel_enabled = False

@@ -1,0 +1,162 @@
+# es — todo: translate strings (structure matches de.yaml)
+toast:
+  time_window_reject: Aún no es el momento adecuado para observar el objeto. Pulsa «Comenzar la observación» cuando el reloj aparezca en la ventana de observación.
+controls:
+  steuerung: 'Steuerung — [F1] dieses Fenster, [H] Hilfe zum Spielablauf.
+
+
+    --- Kamera ---
+
+    Rechte Maustaste halten + Maus bewegen: um die Szene drehen.
+
+    Mausrad: zoomen. Zwei Finger auseinander/zusammen (Pinch): zoomen (Touchpads und
+    Touchscreens).
+
+    Mittlere Maustaste halten + Maus: schwenken (Pan).
+
+    Während rechte Maustaste gedrückt: WASD bewegen, Q / E senken bzw. heben (Shift
+    = schneller).
+
+    Alt+F: Kamera-Start. Shift+F: auf Punkt unter dem Cursor fokussieren. Shift+P:
+    Perspektive / Orthogonal.
+
+
+    --- Spiel (allgemein) ---
+
+    Leertaste: je nach Phase (Warten starten, Belichtung, … siehe [H]).
+
+    Z: Observatorium öffnen (wenn angezeigt). X: Kuppel-Animation zurück (Debug).
+
+    H: Hilfe zum aktuellen Schritt. I: Kuppel grob auf Teleskop ausrichten (Hilfe).
+
+    R: in der Bildphase Serie neu starten. Linksklick: Objekt wählen (wenn aktiv).
+
+
+    --- Teleskop (Schritt „auf Ziel ausrichten“) ---
+
+    Pfeiltaste links / rechts: RA-Achse. Pfeiltaste hoch / runter: DEC-Achse.
+
+
+    --- Kuppel (Schritt „Kuppel ausrichten“) ---
+
+    Pfeiltaste links / rechts: Kuppel in Azimut drehen, bis der Schlitz freie Sicht
+    erlaubt.
+
+    Zusätzlich (Desktop): [ und ] drehen die Kuppel in Schritt 3 und 4.'
+native_touch:
+  steuerung: 'Steuerung (native SDL-Touch-Host)
+
+
+    [H] Hilfe zum Schritt — erneut [H] schließt. [F1] diese Übersicht — aus der Hilfe
+    wechselt [F1] hierher, erneut [F1] schließt.
+
+    In der Hilfe: [Backspace] oder [Eingabe] schließen ebenfalls.
+
+
+    Kamera: Maus ziehen dreht, Mausrad zoomt; mit zwei Fingern Pinch-Geste zoomen
+    (Touch).
+
+    Pfeiltasten halten (←→↑↓) drehen die Ansicht.
+
+
+    Spiel: [Leertaste] [Z] [I] (Kuppel fährt kurz animiert) — Details in [H]. Teleskop
+    Schritt 3: [W][A][S][D] — A/D RA, W/S Dec.; Kuppel dazu [ und ]. Schritt 4: Kuppel
+    auch mit A/D oder [ und ].
+
+    Ab Schritt 3: [X] schließt Schlitz und Klappe animiert (~10 s) zur Ruhestellung
+    (wie Desktop-Ursina).
+
+    [R] in Schritt 6: Aufnahmeserie neu. Linksklick: Objekt wählen.
+
+
+    Schritt 7 (Katalog): [Tab] zwischen Objektname und Entdeckerteam; Text tippen;
+    [Backspace] löscht ein Zeichen; [Eingabe] oder „Speichern“ speichert in user_saves.dat.
+
+    Schritt 8: Tabelle aller Katalogeinträge; [Eingabe] beendet die App (oder „Zurück
+    zur App-Übersicht“ im Touch-Layout).
+
+
+    [Hinweis] Himmel / Zenit: Maus nach unten ziehen oder Pfeil ↓ (weiter neigbar).
+    Zoom mit Mausrad —
+
+    weit herauszoomen (bis GAME_CAM_MAX_DIST) und GAME_CAM_PIVOT_Y bei Bedarf erhöhen
+    für mehr Überblick.'
+help:
+  steps:
+    '1': En las profundidades del sistema solar, se ha avistado un pequeño objeto desconocido con un telescopio robótico. Esta noche, nuestra tarea consiste en iniciar su seguimiento. Para ello, primero debemos esperar a que se eleve por encima del horizonte. Ocurrirá entre las {min_time} y las {max_time} horas. Cuando lleguemos a ese intervalo de tiempo, pulsa el botón «Iniciar observación» para detener el tiempo.
+    '2': A continuación, hay que abrir el observatorio y poner en marcha los equipos que hay en su interior. Para ello, hay que pulsar el botón «Abrir observatorio».
+    '3': Cuando el observatorio esté completamente abierto, apunta el telescopio hacia la posición celeste indicada. Esta posición está marcada en el cielo con un pequeño punto rojo. Para orientarnos mejor, hoy utilizaremos el láser de navegación (rayo azul). Puedes controlar los ejes del telescopio con las teclas de flecha. ¡Ahora te toca a ti!
+    '4': El telescopio apunta ahora hacia la zona del cielo seleccionada. No obstante, también es necesario alinear correctamente la cúpula. Para ello, hay que ajustar la abertura de la cúpula para tener una visión clara del cielo a través del telescopio. Utiliza las teclas de flecha para girar la cúpula y comenzar las observaciones.
+    '5': Haz tres fotos seguidas y espera hasta que cada imagen tenga una buena relación señal-ruido, de modo que se puedan distinguir claramente unas veinte estrellas. Cuando estés satisfecho con la imagen, pulsa el botón «Guardar imagen».
+    '6': Toca el objeto en movimiento. Si no has podido identificar el objeto en tus fotos, puedes hacer tres fotos nuevas con la opción «Empezar desde el principio».
+    '7': ¡La observación ha sido todo un éxito! Para que el objeto recién descubierto se añada a nuestro catálogo de asteroides OST, aún necesita un nombre. Indica también el equipo de descubrimiento. Utiliza la tecla Tab para moverte entre los campos. Cuando todo esté correcto, haz clic en el botón «Guardar» para guardar la entrada.
+    '8': La tabla recoge todos los asteroides descubiertos hasta la fecha mediante el OST. El semieje mayor y el período orbital se han obtenido a partir de los correspondientes cálculos orbitales. Pulsa «Volver al resumen de la aplicación» para finalizar la sesión de observación.
+  ephemeris_note: '
+
+
+    (Nota: Los mapas celestes y las efemérides se refieren a la fecha de simulación {reference_date}, no a la fecha del calendario {catalog_date}.)'
+infotext:
+  step:
+    '1': Das Beobachtungsfenster ist zwischen {min_time} und {max_time} Uhr heute
+      Nacht. Warte und druecke [LEERTASTE], um die Beobachtung zu beginnen.
+    '2': Öffne das Observatorium mit [Z].
+    '3': Richte das Teleskop auf das Ziel aus. Kuppel bei Bedarf mit [ und ].
+    '4': Richte die Kuppel mit [←][→] oder [ und ] auf das Objekt aus.
+    '5': Die Kamera belichtet ... Drücke [LEERTASTE], um ein Bild zu machen
+    '6': Wähle das sich bewegende Objekt mit der [linken Maustaste] aus. (Mit [R]
+      kannst du auf die drei Aufnahmen noch einmal von vorn starten falls du auf deinen
+      Bildern das Objekt noch nicht erkennen kannst.)
+    '7': Trage rechts Objektname und Entdeckerteam ein — [Tab] wechselt das Feld,
+      [Enter] speichert. Die ausführliche Anleitung steht links in der Hilfebox.
+    '8': 'Katalogübersicht — [Enter] beendet die Anwendung. Kurzhilfe: Taste [H].'
+buttons:
+  exposure:
+    start: Iniciar exposición
+    save_last: Guardar última exposición
+    save: Guardar exposición
+    save_second: Guardar segunda exposición
+    save_third: Guardar tercera exposición
+    start_next: Iniciar siguiente exposición
+form:
+  step7:
+    discoverer_placeholder: ""
+catalog:
+  orbit_block: 'a = {a_au:.2f} AE
+
+    e = {ecc:.3f}
+
+    i = {inc_deg:.2f}°
+
+    Ω = {Om_deg:.1f}°
+
+    ω = {om_deg:.1f}°
+
+    P = {p_yr:.2f} Jahre
+
+    Pe = {rp_au:.2f} AE
+
+    Ap = {ra_au:.2f} AE'
+catalog_ui:
+  object_name: Nombre del objeto
+  discoverer_team: Equipo descubridor
+  discoverer_placeholder: 
+  catalog_col_time: Fecha
+  catalog_col_object: Objeto
+  catalog_col_team: Equipo
+  catalog_col_orbit: a / P
+  orbital_elements: Elementos orbitales
+  save_object_heading: "Guardar objeto:"
+  add_to_catalog: Añadir al catálogo
+native_chrome:
+  quit_app: Volver al panel de apps
+  save: Guardar
+  observation_start: Comenzar la observación
+  observatory_open: Abrir observatorio
+  restart_from_beginning: Empezar de nuevo
+  exposure_fallback: Iniciar exposición
+  osk_tab: Tab
+  osk_shift: Shift
+  osk_space: Espacio
+  osk_backspace: Retroceso
+  overlay_step_prefix: 'Paso {step}  |  '
+  idle_warning: 'Inactividad: cierre automático en {seconds} s. Pulsa una tecla o toca la pantalla para reiniciar el temporizador.'

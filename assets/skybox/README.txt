@@ -1,4 +1,4 @@
-Cubemap sky for b1_host (B1_SKYBOX=/path/to/this/dir)
+Cubemap sky for asteroid_game_touch (`ASTEROID_SKYBOX=/path/to/this/dir`)
 
 Place six square images (same pixel size, e.g. 1024x1024):
 
@@ -17,8 +17,8 @@ CC0 sources (examples):
   https://ambientcg.com/     (some material packs include cubemap faces)
 
 Run:
-  B1_SKYBOX=/path/to/asteroid_game/assets/skybox ./b1_host ...
+  ASTEROID_SKYBOX=/path/to/asteroid_game/assets/skybox ./build/asteroid_game_touch ...
 
-If B1_SKYBOX loads, the procedural gradient sky is skipped unless you
-unset B1_SKYBOX. B1_SKY_GRADIENT=0 still disables the fallback gradient
+If ASTEROID_SKYBOX loads, the procedural gradient sky is skipped unless you
+unset ASTEROID_SKYBOX. ASTEROID_SKY_GRADIENT=0 still disables the fallback gradient
 when no cubemap is loaded.

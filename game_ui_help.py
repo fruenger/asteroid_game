@@ -2,12 +2,26 @@
 
 from __future__ import annotations
 
+import time as time_stdlib
+
 import numpy as np
 from ursina import Button, TextField, Vec3, camera, color, invoke
 
 import game_globals as gg
 from game_state import wrap_text
-from game_strings import STEUERUNG_TEXT
+from game_strings import help_text_char_delay_sec, steuerung_text
+
+
+def _help_wrap_width_chars(steuerung: bool = False) -> int:
+    """Rough fill width for Ursina panels (scaled ~0.8·aspect × 0.72·aspect respectively)."""
+    try:
+        ar = float(camera.aspect_ratio_getter())
+    except Exception:
+        ar = 16.0 / 9.0
+    base = int(70 * ar + 24)
+    if steuerung:
+        base = int(base * 0.9)
+    return max(88, min(260, base))
 
 
 def fade_panel_bg_text(panel, duration=1.0, update_frq=20, fade_in=True):
@@ -22,10 +36,25 @@ def fade_panel_bg_text(panel, duration=1.0, update_frq=20, fade_in=True):
 
 
 class HelpWindow(TextField):
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        super().__init__(*args, **kwargs)
+        self._tw_target = ""
+        self._tw_t0 = 0.0
+
     def update(self):
         if self.enabled:
+            epoch = getattr(gg, "i18n_epoch", 0)
+            if epoch != getattr(self, "_i18n_last", -1):
+                self._i18n_last = epoch
+                self._tw_target = ""
             body = gg.game_gs.help_body_text() if gg.game_gs is not None else ""
-            self.text = wrap_text(body, 80)
+            if body != self._tw_target:
+                self._tw_target = body
+                self._tw_t0 = time_stdlib.time()
+            d = max(float(help_text_char_delay_sec()), 1e-9)
+            n = int((time_stdlib.time() - self._tw_t0) / d)
+            n = max(0, min(len(body), n))
+            self.text = wrap_text(body[:n], _help_wrap_width_chars(steuerung=False))
             self.render()
 
     def fade_in(self, duration=1.0, update_frq=20):
@@ -38,9 +67,25 @@ class HelpWindow(TextField):
 class SteuerungsWindow(TextField):
     """Nur Tasten- und Kameraübersicht; Spielablauf bleibt in HelpWindow."""
 
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        super().__init__(*args, **kwargs)
+        self._tw_target = ""
+        self._tw_t0 = 0.0
+
     def update(self):
         if self.enabled:
-            self.text = wrap_text(STEUERUNG_TEXT, 80)
+            epoch = getattr(gg, "i18n_epoch", 0)
+            if epoch != getattr(self, "_i18n_last", -1):
+                self._i18n_last = epoch
+                self._tw_target = ""
+            body = steuerung_text()
+            if body != self._tw_target:
+                self._tw_target = body
+                self._tw_t0 = time_stdlib.time()
+            d = max(float(help_text_char_delay_sec()), 1e-9)
+            n = int((time_stdlib.time() - self._tw_t0) / d)
+            n = max(0, min(len(body), n))
+            self.text = wrap_text(body[:n], _help_wrap_width_chars(steuerung=True))
             self.render()
 
     def fade_in(self, duration=1.0, update_frq=20):

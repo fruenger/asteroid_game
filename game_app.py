@@ -17,6 +17,7 @@ from ursina import (
     Text,
     Texture,
     Ursina,
+    Vec3,
     application,
     camera,
     clamp,
@@ -33,9 +34,11 @@ from ursina import (
 )
 
 import game_globals as gg
+from game_i18n import ensure_locale_env, register_locale_callback
 from celestial_settings import diurnal_sign, horizontal_celestial_offset_rad
 from game_catalog_common import orbital_elements_block
 from game_catalog_step6 import run_step6
+from game_idle_exit import resolved_idle_exit_timeout_sec
 from game_scene import SceneEntities, build_scene
 from game_settings import (
     BORDERLESS,
@@ -51,11 +54,12 @@ from game_state import (
     KeysHeld,
     KeysInput,
     align_dot_threshold,
+    ephemeris_hints_verbose_enabled,
     telescope_target_alignment_misalignment_deg,
 )
 from game_stage_events import make_stageup_event
 from game_synthetic_imaging import build_synthetic_perfect_stack
-from game_strings import TIME_WINDOW_REJECT_TOAST
+from game_strings import toast_time_window_reject_text
 from game_ui_help import build_help_ui
 from game_ui_onscreen import OnScreenMessage, blink_opacity
 from orbit_api import time_str
@@ -98,6 +102,8 @@ def _touch_pinch_zoom_step() -> None:
     if abs(dd) < 0.5:
         return
 
+    gg.last_activity_wall_time = wall_clock.time()
+
     ec = camera.parent
     if ec is None or not hasattr(ec, "target_z"):
         return
@@ -139,10 +145,18 @@ class GameRuntime:
     image_panel: Entity
     imsize: int
     sun_dec: float
+    step0_target_marker: Entity | None = None
 
 
 def bootstrap() -> None:
     global _ursina_app
+
+    ensure_locale_env()
+
+    def _locale_bump(_code: str) -> None:
+        gg.i18n_epoch += 1
+
+    register_locale_callback(_locale_bump)
 
     scenario = generate_game_scenario()
     object_dir_cartesian = scenario.object_dir_cartesian
@@ -170,6 +184,9 @@ def bootstrap() -> None:
     dlog("window + camera configured")
 
     help_window, steuerung_window = build_help_ui()
+    from game_language_bar import attach_language_switcher
+
+    attach_language_switcher()
     dlog("help_window UI ready")
 
     scene_entities = build_scene()
@@ -184,7 +201,15 @@ def bootstrap() -> None:
         max_time=max_time,
         object_dir_cartesian=np.asarray(object_dir_cartesian, dtype=np.float64),
         sun_dec_deg=float(sun_dec),
-        latitude_deg=52.0,
+        latitude_deg=float(scenario.latitude_deg),
+        longitude_deg=float(scenario.longitude_deg),
+        reference_date=scenario.reference_date,
+        session_seed=int(scenario.session_seed),
+        visibility_t_open_mjd=float(scenario.visibility_t_open_mjd),
+        visibility_t_close_mjd=float(scenario.visibility_t_close_mjd),
+        catalog_display_date=scenario.catalog_display_date,
+        ephemeris_orbit=scenario.orbit,
+        verbose_ephemeris_hints=ephemeris_hints_verbose_enabled(False),
         imsize=imsize,
         perfect_stack=all_images_perfect,
         locations_stack=image_locations,
@@ -198,8 +223,7 @@ def bootstrap() -> None:
     scene_entities.sky.set_shader_input("u_sun_dir", (float(sd[0]), float(sd[1]), float(sd[2])))
 
     infotext = OnScreenMessage(
-        message="[default text]",
-        time_between_letters=0.01,
+        "[default text]",
         origin=(-0.5, 0.5),
         parent=camera.ui,
         position=[-0.8, -0.42, -0.002],
@@ -245,7 +269,11 @@ def bootstrap() -> None:
         image_panel=image_panel,
         imsize=imsize,
         sun_dec=sun_dec,
+        step0_target_marker=None,
     )
+
+    gg.idle_exit_timeout_sec = float(resolved_idle_exit_timeout_sec())
+    gg.last_activity_wall_time = wall_clock.time()
 
     if os.environ.get("ASTEROID_GAME_STARTUP_HELP", "1") != "0":
         assert gg.game_gs is not None
@@ -267,6 +295,26 @@ def frame_update() -> None:
     game_gs = gg.game_gs
     game_gs.cheat_through = gg.cheat_through
 
+    wt_now = wall_clock.time()
+    tol = gg.idle_exit_timeout_sec
+    if tol > 0.0:
+        try:
+            if list(held_keys):
+                gg.last_activity_wall_time = wt_now
+        except Exception:
+            pass
+        mv = getattr(mouse, "velocity", None)
+        if mv is not None:
+            try:
+                vx, vy = float(mv[0]), float(mv[1])
+                if vx * vx + vy * vy > 1e-12:
+                    gg.last_activity_wall_time = wt_now
+            except (TypeError, ValueError, IndexError):
+                pass
+        if wt_now - gg.last_activity_wall_time >= tol:
+            application.quit()
+            return
+
     if gg.prev_message != rt.infotext.message:
         rt.infotext.reset_timer()
 
@@ -281,7 +329,7 @@ def frame_update() -> None:
 
     wall_t = wall_clock.time()
     st = int(game_gs.step)
-    if st == 2:
+    if st == 3:
         left_k = bool(held_keys.get("left arrow", False) or held_keys.get("a", False))
         right_k = bool(held_keys.get("right arrow", False) or held_keys.get("d", False))
         up_k = bool(held_keys.get("up arrow", False) or held_keys.get("w", False))
@@ -299,13 +347,13 @@ def frame_update() -> None:
             up=up_k,
             down=down_k,
             r=bool(held_keys.get("r", False)),
-            dome_ccw=bool(st in (2, 3) and held_keys.get("[", False)),
-            dome_cw=bool(st in (2, 3) and held_keys.get("]", False)),
+            dome_ccw=bool(st in (3, 4) and held_keys.get("[", False)),
+            dome_cw=bool(st in (3, 4) and held_keys.get("]", False)),
         )
     )
 
     hints = FrameHints(defer_telescope_target_alignment=True)
-    if game_gs.step == 3 or gg.cheat_through:
+    if game_gs.step == 4 or gg.cheat_through:
         if gg.cheat_through:
             hints.dome_ray_exit_distance = 99999.0
         else:
@@ -327,12 +375,28 @@ def frame_update() -> None:
 
     tick_out = game_gs.tick(ursina_time.dt, wall_t, keys, hints)
 
+    if game_gs.step in (1, 2, 3) and game_gs.reference_date is not None:
+        od = np.asarray(game_gs.object_dir_visual_cartesian, dtype=np.float64).reshape(3)
+        pos = 0.6 * float(camera.clip_plane_far) * Vec3(float(od[0]), float(od[1]), float(od[2]))
+        if rt.step0_target_marker is None:
+            rt.step0_target_marker = Entity(
+                model="sphere",
+                color=color.red,
+                position=pos,
+                scale=(50, 50, 50),
+            )
+        else:
+            rt.step0_target_marker.position = pos
+            rt.step0_target_marker.enabled = True
+    elif rt.step0_target_marker is not None:
+        rt.step0_target_marker.enabled = False
+
     rt.scene.ra_pivot.rotation_y = game_gs.ra_deg
     rt.scene.dec_pivot.rotation_x = game_gs.dec_deg
     rt.scene.dome_pivot.rotation_y = game_gs.dome_az_deg
 
     u_align: np.ndarray | None = None
-    if game_gs.step == 2:
+    if game_gs.step == 3:
         u = np.asarray(rt.scene.telecope_optical_axis.up, dtype=np.float64).reshape(3)
         un = float(np.linalg.norm(u))
         if un > 1e-12:
@@ -342,8 +406,8 @@ def frame_update() -> None:
 
     dbg = rt.align_debug_text
     if dbg is not None:
-        if game_gs.step == 2 and u_align is not None:
-            ang, dot = telescope_target_alignment_misalignment_deg(u_align, game_gs.object_dir_cartesian)
+        if game_gs.step == 3 and u_align is not None:
+            ang, dot = telescope_target_alignment_misalignment_deg(u_align, game_gs.object_dir_visual_cartesian)
             th = float(np.clip(align_dot_threshold(), -1.0, 1.0))
             max_ang = float(np.degrees(np.arccos(th)))
             ph = "ja" if game_gs.paused_help else "nein"
@@ -372,7 +436,7 @@ def frame_update() -> None:
 
     gg.prev_message = rt.infotext.message
     rt.infotext.message = game_gs.infotext_message()
-    if game_gs.step <= 7:
+    if game_gs.step <= 8:
         rt.infotext.color = color.green
     rt.infotext.wordwrap_setter(100)
 
@@ -386,7 +450,7 @@ def frame_update() -> None:
                 Image.fromarray(((arr / mx) * 255.0).astype(np.uint8), mode="L").convert("RGBA")
             )
 
-    if game_gs.step == 5 and game_gs.all_images:
+    if game_gs.step == 6 and game_gs.all_images:
         img = game_gs.all_images[game_gs.image_shown]
         mx = float(img.max())
         if mx > 0.0:
@@ -403,6 +467,8 @@ def frame_update() -> None:
 
 
 def handle_input(key: str) -> None:
+    gg.last_activity_wall_time = wall_clock.time()
+
     rt = gg.runtime
     if rt is None or gg.game_gs is None:
         return
@@ -410,18 +476,18 @@ def handle_input(key: str) -> None:
     game_gs = gg.game_gs
     wall_t = wall_clock.time()
 
-    if key == "space" and game_gs.step == 0:
+    if key == "space" and game_gs.step == 1:
         r = game_gs.handle_discrete_input("space", wall_t)
         if "time_window_reject" in r["events"]:
             print_on_screen(
-                TIME_WINDOW_REJECT_TOAST,
+                toast_time_window_reject_text(),
                 origin=(0, 0),
                 color=color.red,
                 duration=2,
             )
         return
 
-    if key == "z" and game_gs.step == 1:
+    if key == "z" and game_gs.step == 2:
         game_gs.handle_discrete_input("z", wall_t)
         rt.scene.shutter_pivot.animate_rotation([0.0, 0.0, -67.5], duration=10.0, curve=curve.linear)
         rt.scene.flap_pivot.animate_rotation([0.0, 0.0, 80.0], duration=10.0, curve=curve.linear)
@@ -454,7 +520,7 @@ def handle_input(key: str) -> None:
             game_gs.dome_az_deg = -target_azimuth
             rt.scene.dome_pivot.rotation_y = game_gs.dome_az_deg
 
-    if key == "left mouse down" and game_gs.step == 5:
+    if key == "left mouse down" and game_gs.step == 6:
         world_point = mouse.world_point
         try:
             local_point = rt.image_panel.get_relative_point(scene, world_point)

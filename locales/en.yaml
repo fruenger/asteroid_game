@@ -1,0 +1,162 @@
+# en — todo: translate strings (structure matches de.yaml)
+toast:
+  time_window_reject: It is not yet time to observe the object. As soon as the clock appears in the observation window, click "Start observation".
+controls:
+  steuerung: 'Steuerung — [F1] dieses Fenster, [H] Hilfe zum Spielablauf.
+
+
+    --- Kamera ---
+
+    Rechte Maustaste halten + Maus bewegen: um die Szene drehen.
+
+    Mausrad: zoomen. Zwei Finger auseinander/zusammen (Pinch): zoomen (Touchpads und
+    Touchscreens).
+
+    Mittlere Maustaste halten + Maus: schwenken (Pan).
+
+    Während rechte Maustaste gedrückt: WASD bewegen, Q / E senken bzw. heben (Shift
+    = schneller).
+
+    Alt+F: Kamera-Start. Shift+F: auf Punkt unter dem Cursor fokussieren. Shift+P:
+    Perspektive / Orthogonal.
+
+
+    --- Spiel (allgemein) ---
+
+    Leertaste: je nach Phase (Warten starten, Belichtung, … siehe [H]).
+
+    Z: Observatorium öffnen (wenn angezeigt). X: Kuppel-Animation zurück (Debug).
+
+    H: Hilfe zum aktuellen Schritt. I: Kuppel grob auf Teleskop ausrichten (Hilfe).
+
+    R: in der Bildphase Serie neu starten. Linksklick: Objekt wählen (wenn aktiv).
+
+
+    --- Teleskop (Schritt „auf Ziel ausrichten“) ---
+
+    Pfeiltaste links / rechts: RA-Achse. Pfeiltaste hoch / runter: DEC-Achse.
+
+
+    --- Kuppel (Schritt „Kuppel ausrichten“) ---
+
+    Pfeiltaste links / rechts: Kuppel in Azimut drehen, bis der Schlitz freie Sicht
+    erlaubt.
+
+    Zusätzlich (Desktop): [ und ] drehen die Kuppel in Schritt 3 und 4.'
+native_touch:
+  steuerung: 'Steuerung (native SDL-Touch-Host)
+
+
+    [H] Hilfe zum Schritt — erneut [H] schließt. [F1] diese Übersicht — aus der Hilfe
+    wechselt [F1] hierher, erneut [F1] schließt.
+
+    In der Hilfe: [Backspace] oder [Eingabe] schließen ebenfalls.
+
+
+    Kamera: Maus ziehen dreht, Mausrad zoomt; mit zwei Fingern Pinch-Geste zoomen
+    (Touch).
+
+    Pfeiltasten halten (←→↑↓) drehen die Ansicht.
+
+
+    Spiel: [Leertaste] [Z] [I] (Kuppel fährt kurz animiert) — Details in [H]. Teleskop
+    Schritt 3: [W][A][S][D] — A/D RA, W/S Dec.; Kuppel dazu [ und ]. Schritt 4: Kuppel
+    auch mit A/D oder [ und ].
+
+    Ab Schritt 3: [X] schließt Schlitz und Klappe animiert (~10 s) zur Ruhestellung
+    (wie Desktop-Ursina).
+
+    [R] in Schritt 6: Aufnahmeserie neu. Linksklick: Objekt wählen.
+
+
+    Schritt 7 (Katalog): [Tab] zwischen Objektname und Entdeckerteam; Text tippen;
+    [Backspace] löscht ein Zeichen; [Eingabe] oder „Speichern“ speichert in user_saves.dat.
+
+    Schritt 8: Tabelle aller Katalogeinträge; [Eingabe] beendet die App (oder „Zurück
+    zur App-Übersicht“ im Touch-Layout).
+
+
+    [Hinweis] Himmel / Zenit: Maus nach unten ziehen oder Pfeil ↓ (weiter neigbar).
+    Zoom mit Mausrad —
+
+    weit herauszoomen (bis GAME_CAM_MAX_DIST) und GAME_CAM_PIVOT_Y bei Bedarf erhöhen
+    für mehr Überblick.'
+help:
+  steps:
+    '1': A small, unidentified object has been spotted in the depths of the solar system by a robotic telescope. Tonight, we will begin tracking it. First, we must wait for it to rise above the horizon. This will occur between {min_time} and {max_time}. Wait until then, and press the "Start observation" button to pause the timer.
+    '2': Now, open the observatory and start up the equipment inside. You can do so by pressing the "Open observatory" button.
+    '3': Once the observatory is fully open, point the telescope at the specified position in the sky. This is marked in the sky with a small red dot. For better orientation, we'll use our navigation laser (blue beam) today. Use the arrow keys to control the telescope's axes. Now it's your turn!
+    '4': The telescope is now pointing at the chosen area of the sky. However, the dome must also be properly aligned. This is done by adjusting the dome aperture so that we have a clear view of the sky through the telescope. Use the arrow keys to rotate the dome and begin our observations.
+    '5': Take three pictures in a row. Wait until each image has a good signal-to-noise ratio so that you can clearly see about 20 stars. Once you’re satisfied with an image, click the "Save Image" button.
+    '6': Tap on the moving object. If you can't identify the object in your photo yet, you can take three new photos by tapping "Start Over."
+    '7': The observation was successful! For the newly discovered object to be added to our OST asteroid catalog, however, it still needs a name. Please enter the discovery team as well. Use the Tab key to move between fields. Once everything is correct, click the "Save" button to save the entry.
+    '8': The table lists all the asteroids that have been discovered so far using the OST. The semi-major axis and orbital period are derived from respective orbital calculations. Tap "Back to App Overview" to end your observation session.
+  ephemeris_note: '
+
+
+    (Note: Sky charts and ephemerides apply to the simulation date {reference_date}, not to the calendar date {catalog_date}.)  '
+infotext:
+  step:
+    '1': Das Beobachtungsfenster ist zwischen {min_time} und {max_time} Uhr heute
+      Nacht. Warte und druecke [LEERTASTE], um die Beobachtung zu beginnen.
+    '2': Öffne das Observatorium mit [Z].
+    '3': Richte das Teleskop auf das Ziel aus. Kuppel bei Bedarf mit [ und ].
+    '4': Richte die Kuppel mit [←][→] oder [ und ] auf das Objekt aus.
+    '5': Die Kamera belichtet ... Drücke [LEERTASTE], um ein Bild zu machen
+    '6': Wähle das sich bewegende Objekt mit der [linken Maustaste] aus. (Mit [R]
+      kannst du auf die drei Aufnahmen noch einmal von vorn starten falls du auf deinen
+      Bildern das Objekt noch nicht erkennen kannst.)
+    '7': Trage rechts Objektname und Entdeckerteam ein — [Tab] wechselt das Feld,
+      [Enter] speichert. Die ausführliche Anleitung steht links in der Hilfebox.
+    '8': 'Katalogübersicht — [Enter] beendet die Anwendung. Kurzhilfe: Taste [H].'
+buttons:
+  exposure:
+    start: Start exposure
+    save_last: Save last exposure
+    save: Save first exposure
+    save_second: Save second exposure
+    save_third: Save third exposure
+    start_next: Start next exposure
+form:
+  step7:
+    discoverer_placeholder: ""
+catalog:
+  orbit_block: 'a = {a_au:.2f} AE
+
+    e = {ecc:.3f}
+
+    i = {inc_deg:.2f}°
+
+    Ω = {Om_deg:.1f}°
+
+    ω = {om_deg:.1f}°
+
+    P = {p_yr:.2f} Jahre
+
+    Pe = {rp_au:.2f} AE
+
+    Ap = {ra_au:.2f} AE'
+catalog_ui:
+  object_name: Object name
+  discoverer_team: Discoverer team
+  discoverer_placeholder: 
+  catalog_col_time: Time
+  catalog_col_object: Object
+  catalog_col_team: Team
+  catalog_col_orbit: a / P
+  orbital_elements: Orbital elements
+  save_object_heading: "Save object:"
+  add_to_catalog: Add to catalog
+native_chrome:
+  quit_app: Back to app overview
+  save: Save
+  observation_start: Start observation
+  observatory_open: Open observatory
+  restart_from_beginning: Start over
+  exposure_fallback: Start exposure
+  osk_tab: Tab
+  osk_shift: Shift
+  osk_space: Space
+  osk_backspace: Backspace
+  overlay_step_prefix: 'Step {step}  |  '
+  idle_warning: 'Idle: quitting in {seconds} s. Press a key or touch the screen to reset the timer.'
