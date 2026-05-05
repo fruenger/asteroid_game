@@ -365,6 +365,17 @@ def tick(
     tick_out = gs.tick(float(dt), float(wall_t), keys, _hints())
 
     sun = np.asarray(tick_out.get("sun_direction", gs.sun_unit_vector()), dtype=np.float64).reshape(3)
+    snorm = float(np.linalg.norm(sun))
+    if snorm > 1e-18:
+        sun = sun / snorm
+    else:
+        sun = np.array([0.0, 1.0, 0.0], dtype=np.float64)
+    # Ephemeris: sun_y = sin(geometric altitude), Y-up. Orbital sun_direction(): y = -sin(alt).
+    # Lighting ramp + GLES must agree with the normalized sun_xy used for Lambert + sky markers.
+    if gs.reference_date is not None:
+        sun_sin_alt = float(np.clip(sun[1], -1.0, 1.0))
+    else:
+        sun_sin_alt = float(np.clip(-sun[1], -1.0, 1.0))
     catalog_lines, catalog_lines_red, cat_pv_p, cat_pv_pr, cat_pv_v = _catalog_lines_bundle(gs, float(wall_t))
     pw, ph, pg = _panel_gray_bytes(gs)
 
@@ -383,6 +394,7 @@ def tick(
         "sun_x": float(sun[0]),
         "sun_y": float(sun[1]),
         "sun_z": float(sun[2]),
+        "sun_sin_altitude": sun_sin_alt,
         "time_now": float(gs.time_now),
         "ra_deg": float(gs.ra_deg),
         "dec_deg": float(gs.dec_deg),
@@ -407,6 +419,9 @@ def tick(
         "toast_red": toast_red,
         "align_debug_line": _align_debug_line(gs),
         "chrome_ui": _chrome_ui_dict(),
+        "chrome_disabled": {
+            "exposure_primary": bool(gs.step == 5 and not gs.stage4_can_expose()),
+        },
     }
 
     if gs.step == 7:

@@ -18,7 +18,7 @@ ASTEROID_SHUTTER, ASTEROID_FLAP (absolute paths).
 If none load, the single ASTEROID_PLACEHOLDER_GLTF mesh (default assets/touch_placeholder.gltf) is used.
 
 World floor in asteroid_game_touch is y=0 (large quad). Default ASTEROID_RIG_TY is -0.6; tune TX/TY/TZ if the dome floats.
-Camera: GAME_CAM_PIVOT_Y (default 1.4), GAME_CAM_MAX_DIST (default 14), GAME_CAM_INIT_DIST (default 5.0, start zoom).
+Camera: GAME_CAM_PIVOT_Y (default 1.4), GAME_CAM_MAX_DIST (default 14), GAME_CAM_INIT_DIST (default 7.0), GAME_CAM_INIT_HEIGHT (default 2.0 world Y of camera eye unless explicit pitch is set).
 After the dome finishes opening (step 2+), asteroid_game_touch draws a blue laser from the rig optical axis (same kinematics as the GLB mount) and a red target cube (Python tick sends target_guides ox,oy,oz only); GAME_TARGET_GUIDES=0 disables; ASTEROID_TARGET_LASER_LEN, ASTEROID_TARGET_MARKER_DIST, ASTEROID_TARGET_MARKER_SCALE tune sizes.
 
 **[I]** / Schritt-3-Hints: Kuppel-Azimut folgt dem **horizontalen Azimut der optischen Achse** (Blickrichtung). Im **asteroid_game_touch** setzt **[I]** den Azimut aus derselben ``optical_axis_world``-Richtung wie der gezeichnete Laser (Python ``set_dome_az_deg``); ohne Observatorium fällt die Bridge auf ``align_dome_to_telescope`` (Kinematik) zurück.

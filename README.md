@@ -1,30 +1,125 @@
-# asteroid_game
+# asteroid_game — Python game package
 
-A tiny asteroid-finding game for public outreach (Ursina / Panda3D).
+Python layer for the **Asteroid** outreach build: **scenario generation**, **game state machine** (steps 1–8), **Ursina** presentation, and the **touch bridge** used by the native OpenGL ES host. The same `AsteroidGameState.tick()` drives both the desktop game and `asteroid_game_touch` when the embedded Python session is active.
 
-- **`game.py`** — entry only: **`game_boot`**, then **`game_app.bootstrap()`**, Ursina hooks **`update` / `input`**, **`game_app.run_forever()`**.
-- **`game_app.py`** — Ursina window, **`GameRuntime`** (scenario, scene, UI refs), **`frame_update`** / **`handle_input`**.
-- **`game_boot.py`** — faulthandler + shadow **`loadPrcFileData`** before Panda3D.
-- **`game_cam_env.py`** — **`GAME_CAM_DEFAULT_INIT_PITCH_DEG`** (**-30**) and **`initial_camera_yaw_pitch_deg`** (no Ursina; tests / native host docs parity).
-- **`game_settings.py`** — env flags (shadows, fullscreen, borderless, debug), scene shader choice, **`apply_os_fullscreen_hint`**, **`apply_initial_editor_camera_from_env`** (uses **`game_cam_env`**; Ursina **`EditorCamera`** after bootstrap).
-- **`game_globals.py`** — shared mutable state (**`game_paused`**, **`game_gs`**, cheat/laser flags, **`runtime`**).
-- **Environment / i18n:** Runtime language `de` / `en` / `es` via ``ASTRO_LANG`` and/or ``~/.local/share/astro_mini_games/locale.yaml`` (same as Astro Mini Games). Copy strings are in ``locales/*.yaml``; API: ``game_i18n.tr``, ``set_locale``.
-- **`game_strings.py`** — timing helpers and accessors for ``locales/*.yaml`` (see ``locales/README.txt``).
-- **`game_ui_shaders.py`** — **`load_shader`** (GLSL files).
-- **`game_ui_onscreen.py`** — **`OnScreenMessage`**, **`blink_opacity`**.
-- **`game_ui_help.py`** — help / Steuerung **`TextField`** overlays and fade helpers.
-- **`game_scene.py`** — telescope, dome, skybox, lights, **`TransitionMask`**; **`build_scene()`** → **`SceneEntities`**.
-- **`game_synthetic_imaging.py`** — procedural perfect-image stack for **`AsteroidGameState`**.
-- **`game_stage_events.py`** — **`make_stageup_event`** (laser/marker, stage-4 mask).
-- **`game_catalog_step6.py`** — catalog UI after a successful step-5 pick.
-- Step flow and imaging are driven by **`game_state.AsteroidGameState`**. **`get_dome_intersect`** / **`time_str`** from **`orbit_api`**; **`wrap_text`** from **`game_state`**.
-- **`scenario.py`** — procedural **`GameScenario`** (mock asteroid direction, **`preliminary_orbit`**, time window); no Ursina import. Env **`GAME_MAX_TARGET_ALTITUDE_DEG`** (default **75**) und **`GAME_MIN_TARGET_ALTITUDE_DEG`** (default **10**) begrenzen die Zielhöhe (gleichmäßig in Grad zwischen min und max, nicht mehr ``arcsin`` auf [0.5,1]).
-- **`rig_kinematics.py`** / **`touch_game_bridge.py`** — native GLES host support: headless **`AsteroidGameState`** for embedded CPython. **`rig_kinematics`**: **`GAME_RA_OFFSET_DEG`** defaults to **0** (Ursina rig); **`touch_game_bridge.session_init`** sets **`GAME_RA_OFFSET_DEG=180`** if unset so GLES mount matches **`asteroid_game_touch`**. Step **2→3** uses **`rig_kinematics.optical_axis_world_unit`** after each tick’s RA/Dec integration; **`GAME_ALIGN_MAX_ANGLE_DEG`** (default **0.5**) sets the angular tolerance vs. the red target.
-- **`orbit_api.py`** — compute-only API (Astropy, Poliastro, NumPy) for the **native GLES host** (`asteroid_game_touch`); no Ursina. Includes `sun_direction`, `get_dome_intersect` (tests / legacy), time helpers (`day2range`, `range2day`, `time_str`, `vector_magnitude`), **`dispatch_compute_json`** (JSON ops), orbit JSON helpers, optional **`seed`** in `compute_orbit_json`.
-- **`celestial_settings.py`** — **`GAME_CELESTIAL_DIURNAL_SIGN`** (default **-1**): Tagesdrehung (Stundenwinkel, Sternfeld). **`GAME_CELESTIAL_HORIZ_OFFSET_DEG`** (default **180**): Zusätzlicher Azimut um die Welt-**+Y**-Achse für Sonne, Zielrichtung (`scenario`) und Sternhimmel, damit Kulmination zur geografisch erwarteten Seite zeigt (Kuppel/„Home“-Blick vs. Süden zur Mittagssonne auf der Nordhalbkugel). **0** = früheres Mapping ohne diesen Offset. Die GLES prozeduralen Himmelshader im nativen Host lesen dieselbe Variable. Die Sonnenrichtung nutzt die übliche Höhenformel sin(alt)=sin φ sin δ + cos φ cos δ cos H plus Meridian-Anpassung; der Ursina-Himmel (`u_sun_dir`) folgt derselben Vektorrechnung wie das DirectionalLight.
-- **`game_state.py`** — **Phase A:** Ursina-free step logic (`AsteroidGameState`), same flow as `game.py`; `tick(dt, wall_t, keys, hints)` plus `handle_discrete_input`. Uses NumPy/SciPy only; `time_str` / `sun_direction` duplicated here (keep in sync with `orbit_api`) so tests do not require Poliastro. Env **`GAME_START_BEFORE_WINDOW`** (default **1**) und **`GAME_START_HOURS_BEFORE_WINDOW`** (default **2.5**) setzen die Uhr beim ersten Tick auf einige Stunden *vor* dem Sichtbarkeitsfenster. **`GAME_ALIGN_MAX_ANGLE_DEG`** — siehe oben.
-- **Startup:** the help panel opens once at launch (same as before the `game_state` refactor). Set **`ASTEROID_GAME_STARTUP_HELP=0`** to skip it (kiosk / repeat players).
-- **Debug (Ursina):** **`GAME_DEBUG_ALIGN=1`** or **`ASTEROID_DEBUG_ALIGN=1`** — gelber Text: Winkel zwischen Laserachse und Zielrichtung, dot-Produkt, Schwellwinkel, **`paused_help`** / **`game_paused`** (wenn „ja“, läuft keine Zielerkennung).
-- **`tests/`** — `python -m unittest discover -s tests -v` from this directory (`test_game_state.py` runs without the venv; `test_orbit_api.py` / `test_scenario` / `test_touch_*` / `test_rig_kinematics` need the venv).
-- **`../native/asteroid_game_touch/`** — SDL2 + OpenGL ES 2 + embedded CPython; see `README.md` there for build and Pi deployment.
-- **Repo root** — [`../README.md`](../README.md), [`../docs/astro_launcher_integration.md`](../docs/astro_launcher_integration.md) (Astro Mini Games launcher), [`../contrib/`](../contrib/) (example YAML + systemd unit).
+---
+
+## What this package does
+
+1. **Observation narrative** — time window check, dome and telescope interaction, simulated Poisson imaging, asteroid pick, catalog form, final catalog table.
+2. **Consistency** — Ursina (`game_app.py`) and the C++ host consume **one** implementation of steps, keys, and overlays (`paused_help`, toast, panel bytes).
+3. **Localization** — `de` / `en` / `es` via `game_i18n` and `locales/*.yaml` (see [`locales/README.md`](locales/README.md)).
+
+---
+
+## Tech stack
+
+| Area | Libraries / notes |
+| ---- | ----------------- |
+| Desktop runtime | **Ursina** (Panda3D) |
+| Headless / native | **NumPy**, **SciPy** (imaging); optional **Astropy** + **Poliastro** (`orbit_api`, `observation_window`) |
+| State & flow | `game_state.py` — no Ursina import |
+| Scenario | `scenario.py` — procedural mock geometry and time window |
+
+---
+
+## Architecture (high level)
+
+```text
+game.py
+  └─ game_boot  →  game_app.bootstrap()  →  Ursina update/input
+                        │
+                        ├─ GameRuntime / scene (game_scene.py)
+                        └─ AsteroidGameState.tick()  ← single step engine
+```
+
+Native host (sibling directory `../native/asteroid_game_touch/`):
+
+```text
+touch_game_bridge.session_init()
+  └─ tick(dt, wall_t, …)  →  AsteroidGameState.tick()  →  dict → GLES host
+```
+
+Aligning **telescope vs. target** in step 3 uses `rig_kinematics` in both worlds; the Ursina path can defer alignment to the render thread; the native path uses immediate optical-axis checks from the same math.
+
+---
+
+## Key modules
+
+### Entry & lifecycle
+
+| Module | Responsibility |
+| ------ | -------------- |
+| `game.py` | Entry: `game_boot`, Ursina hooks `update` / `input`, `game_app.run_forever()` |
+| `game_app.py` | `GameRuntime`, `frame_update`, `handle_input`, infotext / panel wiring |
+| `game_boot.py` | Faulthandler, early Panda3D `loadPrcFileData` |
+| `game_globals.py` | Shared mutable flags (`game_gs`, `runtime`, pause, cheats) |
+
+### Settings & camera
+
+| Module | Responsibility |
+| ------ | -------------- |
+| `game_settings.py` | Env-driven fullscreen, shaders, debug; `apply_os_fullscreen_hint`, camera from env |
+| `game_cam_env.py` | Default pitch / yaw conventions (parity with native docs) |
+
+### Scene & UI (Ursina)
+
+| Module | Responsibility |
+| ------ | -------------- |
+| `game_scene.py` | Telescope, dome, skybox, lights, transitions; `build_scene()` |
+| `game_ui_*.py` | Shaders, on-screen text, help/control overlays |
+| `game_stage_events.py` | Laser / marker / stage transitions |
+| `game_catalog_step6.py` | Catalog-oriented UI helpers after imaging |
+
+### Simulation & astronomy
+
+| Module | Responsibility |
+| ------ | -------------- |
+| `game_state.py` | **`AsteroidGameState`** — phases, imaging, dome/telescope speeds, **`paused_help`**, outputs for overlay/panel |
+| `scenario.py` | **`GameScenario`** — visibility window, object direction, orbit hints; Ursina-free |
+| `orbit_api.py` | Compute API for orbit JSON, sun direction, dome ray tests; Astropy/Poliastro |
+| `celestial_settings.py` | `GAME_CELESTIAL_DIURNAL_SIGN`, `GAME_CELESTIAL_HORIZ_OFFSET_DEG` (sky / sun parity with GLES shaders) |
+| `game_synthetic_imaging.py` | Perfect-image stack fed into Poisson exposures |
+| `rig_kinematics.py` | Mount math; **`GAME_RA_OFFSET_DEG`** (Ursina default 0°, native bridge often forces 180° for mesh alignment) |
+| `touch_game_bridge.py` | **`tick`**, **`input_key`**, locale, panel grayscale bytes for GLES |
+
+---
+
+## Environment variables (representative)
+
+Full lists live in source comments and in **`asteroid_game_touch`** usage strings. Common knobs:
+
+| Variable | Role |
+| -------- | ---- |
+| `GAME_START_BEFORE_WINDOW` / `GAME_START_HOURS_BEFORE_WINDOW` | Start wall-clock-relative **before** the visibility window (default-like behavior in `game_state`) |
+| `GAME_MAX_TARGET_ALTITUDE_DEG` / `GAME_MIN_TARGET_ALTITUDE_DEG` | Clamp target altitude for the scenario |
+| `GAME_ALIGN_MAX_ANGLE_DEG` | Telescope–target alignment tolerance (step 3 → 4) |
+| `GAME_RA_OFFSET_DEG` | Rig vs. Panda mesh offset (coordinate parity with native) |
+| `GAME_CELESTIAL_*` | Diurnal sign and horizon azimuth tweak for sky/object consistency |
+| `ASTRO_LANG` | Locale; mirrors Astro Mini Games when used under the launcher |
+| `ASTEROID_GAME_STARTUP_HELP=0` | Skip one-shot help at launch (kiosk) |
+
+---
+
+## Testing
+
+From **`asteroid_game/`**:
+
+```bash
+python3 -m pytest tests/ -q
+# or
+python3 -m unittest discover -s tests -v
+```
+
+Some tests need the **full venv** (Poliastro / `orbit_api`); `test_game_state.py` is designed to run with minimal deps.
+
+---
+
+## Related paths
+
+| Path | Description |
+| ---- | ----------- |
+| [`../README.md`](../README.md) | Repository overview |
+| [`../native/asteroid_game_touch/README.md`](../native/asteroid_game_touch/README.md) | Native GLES host; **[Astro launcher / `config.yaml`](../native/asteroid_game_touch/README.md#astro-mini-games-launcher-integration)** |
+| [`assets/skybox/README.txt`](assets/skybox/README.txt) | Cubemap layout for optional sky |
+| [`assets/fonts/`](assets/fonts/) | Optional bundled **DejaVu** + **Material Icons** for native UI |

@@ -247,6 +247,8 @@ class AsteroidGameState:
     _help_pause_start_wall_t: Optional[float] = field(default=None, init=False, repr=False)
     """Subtract from wall_t in _advance_time so celestial time does not run while paused_help."""
     _help_wall_slip_accum: float = field(default=0.0, init=False, repr=False)
+    """Set when entering step 8 — next ``_advance_time`` re-anchors wall clock to frozen ``time_now`` so time can run."""
+    _time8_anchor_reset_pending: bool = field(default=False, init=False, repr=False)
 
     toast_message: str = ""
     toast_until_wall_t: float = 0.0
@@ -377,10 +379,22 @@ class AsteroidGameState:
         return speed - (ACCEL * accel_scale / 2.0) * dt * np.sign(speed)
 
     def _advance_time(self, wall_t: float) -> None:
-        if self.time_stopped:
+        if self.time_stopped and self.step < 8:
             return
         rate = 1.0 / 100.0
         wt = float(wall_t) - float(self._help_wall_slip_accum)
+        if self.step >= 8:
+            if self._time8_anchor_reset_pending:
+                self._time_wall_anchor = wt
+                self._time_now_at_anchor = float(self.time_now) % 1.0
+                self._time8_anchor_reset_pending = False
+            aw = self._time_wall_anchor
+            if aw is None:
+                self._time_wall_anchor = wt
+                self._time_now_at_anchor = float(self.time_now) % 1.0
+                aw = self._time_wall_anchor
+            self.time_now = (self._time_now_at_anchor + (wt - float(aw)) * rate) % 1.0
+            return
         if not self._start_before_window_enabled:
             self.time_now = (wt * rate) % 1.0
             return
@@ -565,6 +579,7 @@ class AsteroidGameState:
             else:
                 append_catalog_entry(self.step6_object_name, discoverer)
             self.step = 8
+            self._time8_anchor_reset_pending = True
             self.image_panel_enabled = False
             out["handled"] = True
             out["process_exit"] = False
@@ -894,4 +909,5 @@ class AsteroidGameState:
         if self.paused_help:
             self.close_help_overlay(wt)
         self.step = 8
+        self._time8_anchor_reset_pending = True
         self.image_panel_enabled = False

@@ -38,6 +38,9 @@ class TestTouchGameBridge(unittest.TestCase):
         self.assertEqual(out["catalog_lines"], [])
         self.assertIn("chrome_ui", out)
         self.assertIn("quit", out["chrome_ui"])
+        self.assertIn("chrome_disabled", out)
+        self.assertIn("exposure_primary", out["chrome_disabled"])
+        self.assertIsInstance(out["chrome_disabled"]["exposure_primary"], bool)
 
     def test_align_dome_to_telescope(self) -> None:
         import touch_game_bridge as tg
